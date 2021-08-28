@@ -8,6 +8,8 @@
 
 ## Class: MessagePortMain
 
+> メインプロセス内でチャンネルメッセージングをするためのポートインターフェイスです。
+
 プロセス: [Main](../glossary.md#main-process)
 
 ### インスタンスメソッド
@@ -31,7 +33,7 @@
 
 #### イベント: 'message'
 
-戻り値:
+戻り値：
 
 * `messageEvent` Object
   * `data` any

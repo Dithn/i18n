@@ -12,9 +12,9 @@ Processo: [Main](../glossary.md#main-process)
     * `large` - Large space between items. Maps to `NSTouchBarItemIdentifierFixedSpaceLarge`.
     * `flexible` - Take up all available space. Maps to `NSTouchBarItemIdentifierFlexibleSpace`.
 
-### Propriedades de Instância
+### Propriedades da Instância
 
-The following properties are available on instances of `TouchBarSpacer`:
+As seguintes propriedades estão disponíveis em instâncias de `TouchBarSpacer`:
 
 #### `touchBarSpacer.size`
 

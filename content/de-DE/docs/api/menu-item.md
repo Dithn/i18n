@@ -2,13 +2,13 @@
 
 > Add items to native application menus and context menus.
 
-Prozess: [Main](../glossary.md#main-process)
+Prozess: [Haupt](../glossary.md#main-process)
 
 See [`Menu`](menu.md) for examples.
 
 ### `new MenuItem(options)`
 
-* `options` Object
+* `options` Objekt
   * `click` Function (optional) - Will be called with `click(menuItem, browserWindow, event)` when the menu item is clicked.
     * `menuItem` MenuItem
     * `browserWindow` [BrowserWindow](browser-window.md) | undefined - This will not be defined if no window is open.
@@ -47,9 +47,9 @@ Every menu item must have either a `role`, `label`, or in the case of a separato
 
 The `role` property can have following values:
 
-* `hiermit machen Sie die Aktion rückgängig.`
+* `undo`
 * `about` - Trigger a native about panel (custom message box on Window, which does not provide its own).
-* `hiermit wiederholen Sie die Aktion.`
+* `redo`
 * `cut`
 * `copy`
 * `paste`

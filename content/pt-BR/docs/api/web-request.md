@@ -36,14 +36,14 @@ The following methods are available on instances of `WebRequest`:
 
 #### `webRequest.onBeforeRequest([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -52,7 +52,7 @@ The following methods are available on instances of `WebRequest`:
     * `uploadData` [UploadData[]](structures/upload-data.md)
   * `callback` Function
     * `response` Object
-      * `cancel` Boolean (optional)
+      * `cancel` Boolean (opcional)
       * `redirectURL` String (optional) - The original request is prevented from being sent or completed and is instead redirected to the given URL.
 
 The `listener` will be called with `listener(details, callback)` when a request is about to occur.
@@ -78,14 +78,14 @@ Alguns exemplos de `urls` válidas:
 
 #### `webRequest.onBeforeSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -94,7 +94,7 @@ Alguns exemplos de `urls` válidas:
     * `requestHeaders` Record<string, string>
   * `callback` Function
     * `beforeSendResponse` Object
-      * `cancel` Boolean (optional)
+      * `cancel` Boolean (opcional)
       * `requestHeaders` Record<string, string | string[]> (optional) - When provided, request will be made with these headers.
 
 The `listener` will be called with `listener(details, callback)` before sending an HTTP request, once the request headers are available. Isto pode ocorrer após uma conexão TCP ser feita ao servidor, mas antes que qualquer dado http seja enviado.
@@ -103,14 +103,14 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -122,14 +122,14 @@ The `listener` will be called with `listener(details)` just before a request is 
 
 #### `webRequest.onHeadersReceived([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -137,11 +137,10 @@ The `listener` will be called with `listener(details)` just before a request is 
     * `timestamp` Double
     * `statusLine` String
     * `statusCode` Integer
-    * `requestHeaders` Record<string, string>
     * `responseHeaders` Record<string, string[]> (optional)
   * `callback` Function
     * `headersReceivedResponse` Object
-      * `cancel` Boolean (optional)
+      * `cancel` Boolean (opcional)
       * `responseHeaders` Record<string, string | string[]> (optional) - When provided, the server is assumed to have responded with these headers.
       * `statusLine` String (optional) - Should be provided when overriding `responseHeaders` to change header status otherwise original response header's status will be used.
 
@@ -151,14 +150,14 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onResponseStarted([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -173,14 +172,14 @@ The `listener` will be called with `listener(details)` when first byte of the re
 
 #### `webRequest.onBeforeRedirect([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -197,14 +196,14 @@ The `listener` will be called with `listener(details)` when a server initiated r
 
 #### `webRequest.onCompleted([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String
@@ -220,14 +219,14 @@ The `listener` will be called with `listener(details)` when a request is complet
 
 #### `webRequest.onErrorOccurred([filter, ]listener)`
 
-* `filter` Object (optional)
+* Objeto `filter` (opcional)
   * `urls` String[] - Array of URL patterns that will be used to filter out the requests that do not match the URL patterns.
 * `listener` Function | null
-  * `details` Object
+  * Objeto `details`
     * `id` Inteiro
     * String `url`
     * `method` String
-    * `webContentsId` Integer (optional)
+    * `webContentsId` Integer (opcional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
     * `resourceType` String

@@ -53,7 +53,7 @@ session.setPermissionCheckHandler((webContents, permission, requestingOrigin) =>
 
 ### 削除: `shell.moveItemToTrash()`
 
-非推奨の同期 `shell.moveItemToTrash()` API が削除されました。 代わりに の非同期 `shell.trashItem()` を使用してください。
+非推奨となっていた同期型の `shell.moveItemToTrash()` API が削除されました。 代わりに非同期の `shell.trashItem()` を使用してください。
 
 ```js
 // Electron 13 では削除されます。
@@ -134,11 +134,27 @@ systemPreferences.isHighContrastColorScheme()
 nativeTheme.shouldUseHighContrastColors
 ```
 
+### 非推奨: WebContents `new-window` イベント
+
+WebContents の `new-window` イベントは非推奨となりました。 これは [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler) に置き換えられます。
+
+```js
+// Electron 13 で非推奨
+webContents.on('new-window', (event) => {
+  event.preventDefault()
+})
+
+// こちらに置換
+webContents.setWindowOpenHandler((details) => {
+  return { action: 'deny' }
+})
+```
+
 ## 予定されている破壊的なAPIの変更 (12.0)
 
-### 削除: Pepper(ペッパー)フラッシュ対応
+### 削除: Pepper Flash サポート
 
-ChromiumはFlashのサポートを削除しましたので、それに続く必要があります。 詳細については、Chromium の [Flash Roadmap](https://www.chromium.org/flash-roadmap) を参照してください。
+Chromium が Flash のサポートを削除したため、私たちもこれに従わなければなりません。 詳細については、Chromium の [Flash Roadmap](https://www.chromium.org/flash-roadmap) を参照してください。
 
 ### 省略値変更: `worldSafeExecuteJavaScript` の省略値を `true` に
 
@@ -148,13 +164,13 @@ Electron 12 からは `worldSafeExecuteJavaScript` が既定で有効です。  
 
 ### 省略値変更: `contextIsolation` の省略値を `true` に
 
-Electron 12 では、 `contextIsolation` がデフォルトで有効になります。  以前の動作を復元するには、 、 `contextIsolation: false` をWebPreferencesで指定する必要があります。
+Electron 12 からは `contextIsolation` が既定で有効です。  以前の動作に戻すには、WebPreferences で `contextIsolation: false` を指定する必要があります。
 
-[アプリケーションのセキュリティのためにコンテキスト分離を有効にする](https://github.com/electron/electron/blob/master/docs/tutorial/security.md#3-enable-context-isolation-for-remote-content) をお勧めします。
+アプリケーションのセキュリティのために、[contextIsolation の有効化を推奨します](https://github.com/electron/electron/blob/master/docs/tutorial/security.md#3-enable-context-isolation-for-remote-content)。
 
 これは、`nodeIntegration` が `true` かつ `contextIsolation` が `false` でない限り、`require()` がレンダラープロセスで使用できなくなるということでもあります。
 
-詳細は以下をご覧ください: https://github.com/electron/electron/issues/23506
+詳細はこちら: https://github.com/electron/electron/issues/23506
 
 ### 削除: `crashReporter.getCrashesDirectory()`
 
@@ -182,15 +198,15 @@ app.getPath('crashDumps')
 
 詳しくは [#23265](https://github.com/electron/electron/pull/23265) を参照してください。
 
-### デフォルトの変更: `crashReporter.start({ compress: true })`
+### 既定値の変更: `crashReporter.start({ compress: true })`
 
-`compress` オプションの `crashReporter.start` のデフォルト値が `false` から `true` に変更されました。 つまり、クラッシュのダンプは `Content-Encoding: gzip` ヘッダで、本文が圧縮されてクラッシュ収集サーバーにアップロードされます。
+`crashReporter.start` の `compress` オプションの既定値が `false` から `true` へ変更されました。 つまり、クラッシュのダンプは `Content-Encoding: gzip` ヘッダで、本文が圧縮されてクラッシュ収集サーバーにアップロードされます。
 
 クラッシュ収集サーバーが圧縮形式のペイロードをサポートしていない場合、クラッシュレポーターのオプションで `{ compress: false }` を指定すれば圧縮をオフにできます。
 
-### 非推奨: `リモート` モジュール
+### 非推奨: `remote` モジュール
 
-`リモート` モジュールは Electron 12 で非推奨で、 Electron 14 で削除されます。 [`@electron/remote`](https://github.com/electron/remote) モジュールに置き換えられます。
+`remote` モジュールは Electron 12 で非推奨となり、Electron 14 で削除される予定です。 これは [`@electron/remote`](https://github.com/electron/remote) モジュールに置き換えられます。
 
 ```js
 // Electron 12では非推奨:
@@ -198,16 +214,16 @@ const { BrowserWindow } = require('electron').remote
 ```
 
 ```js
-// 置換:
+// こちらに置換:
 const { BrowserWindow } = require('@electron/remote')
 
-// メインプロセスで:
+// メインプロセスでは:
 require('@electron/remote/main').initialize()
 ```
 
 ### 非推奨: `shell.moveItemToTrash()`
 
-同期 `shell.moveItemToTrash()` が新しい 非同期 `shell.trashItem()` に置き換えられました。
+同期的な `shell.moveItemToTrash()` は、新しく非同期的な `shell.trashItem()` に置き換えられました。
 
 ```js
 // Electron 12 では非推奨
@@ -579,7 +595,7 @@ powerMonitor.querySystemIdleState(threshold, callback)
 const idleState = powerMonitor.getSystemIdleState(threshold)
 ```
 
-### API 変更: `powerMonitor.querySystemIdleTime` が `powerMonitor.getSystemIdleTime` になりました
+### API 変更: `powerMonitor.querySystemIdleTime` は `powerMonitor.getSystemIdleTime` に
 
 ```js
 // Electron 7.0 で削除
@@ -991,7 +1007,7 @@ nativeImage.createFromBuffer(buffer, {
 })
 ```
 
-### `process`
+### `プロセス`
 
 ```js
 // 非推奨
@@ -1095,7 +1111,7 @@ webview.onkeyup = () => { /* handler */ }
 // 非推奨
 const optionsA = { titleBarStyle: 'hidden-inset' }
 const windowA = new BrowserWindow(optionsA)
-// 置換
+// こちらに置換
 const optionsB = { titleBarStyle: 'hiddenInset' }
 const windowB = new BrowserWindow(optionsB)
 ```
@@ -1123,7 +1139,7 @@ nativeImage.toJpeg()
 nativeImage.toJPEG()
 ```
 
-### `process`
+### `プロセス`
 
 * `process.versions.electron` と `process.version.chrome` は、Node によって定められた他の `process.versions` プロパティと一貫性を持つために読み取り専用プロパティになりました。
 
@@ -1158,7 +1174,7 @@ webview.setVisualZoomLevelLimits(1, 2)
 
 どの Electron リリースにも、`electron-v1.7.3-linux-arm.zip` や `electron-v1.7.3-linux-armv7l.zip` のような少しファイル名が異なる2つの同一な ARM ビルドが含まれます。 サポートされている ARM バージョンをユーザに明確にし、将来作成される armv6l および arm64 アセットらと明確にするために、`v7l` という接頭子を持つアセットが追加されました。
 
-_接頭子が付いていない_ファイルは、まだそれを使用している可能性がある設定を破壊しないようにするために公開されています。 2.0 からは、接頭子のないファイルは公開されなくなりました。
+_接頭子が付いていない_ ファイルは、まだそれを使用している可能性がある設定を破壊しないために公開しています。 2.0 からは、接頭子のないファイルは公開されなくなりました。
 
 詳細は、[6986](https://github.com/electron/electron/pull/6986) と [7189](https://github.com/electron/electron/pull/7189) を参照してください。
 

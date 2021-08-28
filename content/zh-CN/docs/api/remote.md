@@ -2,7 +2,7 @@
 
 > 在渲染进程中使用主进程模块。
 
-进程: [渲染进程](../glossary.md#renderer-process)
+进程: [ Renderer](../glossary.md#renderer-process)
 
 > ⚠️ WARNING ⚠️ The `remote` module is [deprecated](https://github.com/electron/electron/issues/21408). Instead of `remote`, use [`ipcRenderer`](ipc-renderer.md) and [`ipcMain`](ipc-main.md).
 > 
@@ -24,8 +24,8 @@ win.loadURL('https://github.com')
 
 **注意事项：** 因为安全原因，remote 模块能在以下几种情况下被禁用：
 
-- [`BrowserWindow`](browser-window.md) - 通过设置 `enableRemoteModule` 选项为 `false`。
-- [`<webview>`](webview-tag.md) - 通过把 ` enableremotemodule`属性设置成 `false`。
+* [`BrowserWindow`](browser-window.md) - 通过设置 `enableRemoteModule` 选项为 `false`。
+* [`<webview>`](webview-tag.md) - 通过把 ` enableremotemodule`属性设置成 `false`。
 
 ## 远程对象（Remote Objects）
 
@@ -121,9 +121,9 @@ console.log(app)
 
 返回 ` any `-主进程中 ` name ` (例如 ` global[name]`) 的全局变量。
 
-## Properties
+## 属性
 
-### `需要`
+### `remote.require`
 
 A `NodeJS.Require` function equivalent to `require(module)` in the main process. 由其相对路径指定的模块将相对于主进程的入口点来解析。
 
@@ -155,7 +155,7 @@ module.exports = 'bar'
 const foo = require('electron').remote.require('./foo') // bar
 ```
 
-### `remote.process` _Readonly_
+### `remote.process` _只读_
 
 A `NodeJS.Process` object.  The `process` object in the main process. This is the same as `remote.getGlobal('process')` but is cached.
 

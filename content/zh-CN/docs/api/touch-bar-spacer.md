@@ -8,13 +8,13 @@
 
 * `选项` 对象
   * `size` String (optional) - Size of spacer, possible values are:
-    * ` small `-项之间的留较小间距。 Maps to `NSTouchBarItemIdentifierFixedSpaceSmall`. This is the default.
+    * ` small `-项之间的留较小间距。 Maps to `NSTouchBarItemIdentifierFixedSpaceSmall`. 默认为该值。
     * ` large `-项之间的留较大间距。 Maps to `NSTouchBarItemIdentifierFixedSpaceLarge`.
     * ` flexible `-补齐所有可用空间。 Maps to `NSTouchBarItemIdentifierFlexibleSpace`.
 
 ### 实例属性
 
-The following properties are available on instances of `TouchBarSpacer`:
+以下属性可用于 `TouchBarSpacer`:
 
 #### `touchBarSpacer.size`
 

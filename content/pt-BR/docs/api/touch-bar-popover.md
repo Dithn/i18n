@@ -10,11 +10,11 @@ Processo: [Main](../glossary.md#main-process)
   * `label` String (optional) - Popover button text.
   * `icon` [NativeImage](native-image.md) (optional) - Popover button icon.
   * `items` [TouchBar](touch-bar.md) - Items to display in the popover.
-  * `showCloseButton` Boolean (optional) - `true` to display a close button on the left of the popover, `false` to not show it. Default is `true`.
+  * `showCloseButton` Boolean (optional) - `true` to display a close button on the left of the popover, `false` to not show it. Por padrão é `true`.
 
-### Propriedades de Instância
+### Propriedades da Instância
 
-The following properties are available on instances of `TouchBarPopover`:
+As seguintes propriedades estão disponíveis em instâncias de `TouchBarPopover`:
 
 #### `touchBarPopover.label`
 

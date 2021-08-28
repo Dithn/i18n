@@ -20,7 +20,7 @@ app.whenReady().then(() => {
 
 統合認証が有効であるサーバーのコンマ区切りのリスト。
 
-例:
+以下がその例です。
 
 ```sh
 --auth-server-whitelist='*example.com, *foobar.com, *baz'
@@ -58,12 +58,12 @@ Chromiumが隠れたページのレンダラープロセスの優先順位を下
 
 以下の API の呼び出し元スタックログを有効にします (イベントのフィルタリング)。
 
-- `desktopCapturer.getSources()` / `desktop-capturer-get-sources`
-- `remote.require()` / `remote-require`
-- `remote.getGlobal()` / `remote-get-builtin`
-- `remote.getBuiltin()` / `remote-get-global`
-- `remote.getCurrentWindow()` / `remote-get-current-window`
-- `remote.getCurrentWebContents()` / `remote-get-current-web-contents`
+* `desktopCapturer.getSources()` / `desktop-capturer-get-sources`
+* `remote.require()` / `remote-require`
+* `remote.getGlobal()` / `remote-get-builtin`
+* `remote.getBuiltin()` / `remote-get-global`
+* `remote.getCurrentWindow()` / `remote-get-current-window`
+* `remote.getCurrentWebContents()` / `remote-get-current-web-contents`
 
 ### --enable-logging
 
@@ -71,11 +71,17 @@ Chromiumが隠れたページのレンダラープロセスの優先順位を下
 
 このスイッチは、ユーザのアプリがロードされるよりも早く解析されるため、`app.commandLine.appendSwitch` で使用することはできませんが、同じ効果を得るために `ELECTRON_ENABLE_LOGGING` 環境変数を設定することができます。
 
+### --force-fieldtrials=`trials`
+
+フィールド トライアルを強制的に有効または無効にします。
+
+例: `WebRTC-Audio-Red-For-Opus/Enabled/`
+
 ### --host-rules=`rules`
 
 ホスト名をどのようにマッピングするかを制御する `rules` のコンマ区切りのリスト。
 
-例:
+以下がその例です。
 
 * `MAP * 127.0.0.1` は、すべてのホスト名を強制的に127.0.0.1にマッピングします。
 * `MAP *.google.com proxy` は、すべてのgoogle.comのサブドメインを強制的に "proxy" で解決されるようにします。
@@ -120,13 +126,13 @@ $ electron --js-flags="--harmony_proxies --harmony_collections" your-app
 
 ### --no-sandbox
 
-既定で有効化された Chromium サンドボックスを無効化します。 テスト時のみ使用すべきです。
+Chromium の [サンドボックス](https://www.chromium.org/developers/design-documents/sandbox) を無効化します。 レンダラープロセスと Chromium ヘルパープロセスにサンドボックスなしの実行を強制します。 テスト時のみ使用すべきです。
 
 ### --proxy-bypass-list=`hosts`
 
 セミコロン区切りで与えられたホストに対してプロキシサーバを回避するように Electron へ指示します。 このフラグは `—proxy-server` と共に使用される場合のみ有効です。
 
-例:
+以下がその例です。
 
 ```javascript
 const { app } = require('electron')

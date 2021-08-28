@@ -12,7 +12,7 @@ Pour plus d’informations sur la façon de communiquer correctement une vulnér
 
 ## Problèmes de sécurité et mises à jour de Chromium
 
-Electron se tient à jour avec les versions alternatives de Chromium. Pour plus d'informations, voir le blog [Electron Release Cadence](https://electronjs.org/blog/12-week-cadence).
+Electron keeps up to date with alternating Chromium releases. For more information, see the [Electron Release Cadence blog post](https://electronjs.org/blog/12-week-cadence).
 
 ## La sécurité est la responsabilité de tous
 
@@ -78,8 +78,13 @@ browserWindow.loadURL('http://example.com')
 browserWindow.loadURL('https://example.com')
 ```
 
-```html<!-- Incorrect --><script crossorigin src="http://example.com/react.js"></script>
-<link rel="stylesheet" href="http://example.com/style.css"><!-- Correct --><script crossorigin src="https://example.com/react.js"></script>
+```html
+<!-- Incorrect -->
+<script crossorigin src="http://example.com/react.js"></script>
+<link rel="stylesheet" href="http://example.com/style.css">
+
+<!-- Correct -->
+<script crossorigin src="https://example.com/react.js"></script>
 <link rel="stylesheet" href="https://example.com/style.css">
 ```
 
@@ -120,7 +125,12 @@ const mainWindow = new BrowserWindow({
 mainWindow.loadURL('https://example.com')
 ```
 
-```html<!-- Incorrect --><webview nodeIntegration src="page.html"></webview><!-- Correct --><webview src="page.html"></webview>
+```html
+<!-- Incorrect -->
+<webview nodeIntegration src="page.html"></webview>
+
+<!-- Correct -->
+<webview src="page.html"></webview>
 ```
 
 Lors de la désactivation de l'intégration de Node.js, vous pouvez toujours exposer des API à votre site web qui consomment des modules ou des fonctionnalités de Node.js. Les scripts de préchargement continuent d'avoir accès à `require` et aux autres fonctionnalités de Node.js, permettant aux développeurs d'exposer une API personnalisée au contenu chargé à distance.
@@ -142,11 +152,11 @@ L'isolement du contexte est une fonctionnalité d'Electron qui permet aux dével
 
 L'électron utilise la même technologie que le chrome [Content Scripts](https://developer.chrome.com/extensions/content_scripts#execution-environment) pour permettre ce comportement.
 
-Even when `nodeIntegration: false` is used, to truly enforce strong isolation and prevent the use of Node primitives `contextIsolation` **must** also be used.
+Même lorsque `nodeIntegration: false` est utilisé, pour vraiment appliquer une isolation forte et empêcher l'utilisation de Node primitives `contextIsolation` **doivent** également être utilisées.
 
-### Pourquoi & Comment ?
+### Why & How?
 
-Pour plus d'informations sur ce qu'est `contextIsolation` et comment l'activer, veuillez voir notre document dédié [Isolation de contexte](context-isolation.md).
+For more information on what `contextIsolation` is and how to enable it please see our dedicated [Context Isolation](context-isolation.md) document.
 
 ## 4) Gérer les demandes d'autorisation de session à partir du contenu distant
 
@@ -209,7 +219,12 @@ const mainWindow = new BrowserWindow({
 const mainWindow = new BrowserWindow()
 ```
 
-```html<!-- Incorrect --><webview disablewebsecurity src="page.html"></webview><!-- Correct --><webview src="page.html"></webview>
+```html
+<!-- Incorrect -->
+<webview disablewebsecurity src="page.html"></webview>
+
+<!-- Correct -->
+<webview src="page.html"></webview>
 ```
 
 ## 6) Définir une politique de sécurité de contenu
@@ -291,7 +306,7 @@ Les utilisateurs avancés d'Electron peuvent activer les fonctionnalités expér
 
 ### Pourquoi ?
 
-Les fonctionnalités expérimentales sont, comme le nom le suggère, expérimentales et n'ont pas été activées pour tous les utilisateurs de Chromium. De plus, leur impact sur Electron dans son ensemble n'a probablement pas été testé.
+Experimental features are, as the name suggests, experimental and have not been enabled for all Chromium users. Furthermore, their impact on Electron as a whole has likely not been tested.
 
 Il est parfois légitime de les implémenter, mais à moins que vous sachiez vraiment ce que vous faites, vous ne devriez pas autoriser ces fonctionnalités.
 
@@ -349,7 +364,12 @@ Si vous n'avez pas besoin de popups, il vaut mieux ne pas autoriser la création
 
 ### Comment ?
 
-```html<!-- Incorrect --><webview allowpopups src="page.html"></webview><!-- Correct --><webview src="page.html"></webview>
+```html
+<!-- Incorrect -->
+<webview allowpopups src="page.html"></webview>
+
+<!-- Correct -->
+<webview src="page.html"></webview>
 ```
 
 ## 11) Vérifiez les options de WebView avant la création
@@ -388,7 +408,7 @@ app.on('web-contents-created', (event, contents) => {
 })
 ```
 
-Encore une fois, cette liste ne fait que minimiser le risque, elle ne le supprime pas. Si votre objectif est d'afficher un site web, un navigateur sera une option plus sûre.
+Again, this list merely minimizes the risk, it does not remove it. If your goal is to display a website, a browser will be a more secure option.
 
 ## 12) Désactiver ou limiter la navigation
 
@@ -485,7 +505,7 @@ Vous devriez toujours vous efforcer d'utiliser la dernière version disponible d
 
 Une application construite avec une ancienne version d'Electron, de Chromium ou de Node.js est une cible plus facile qu'une application qui utilise des versions plus récentes de ces composants. De manière générale, les problèmes de sécurité et les exploitation de failles pour les anciennes versions de Chromium et de Node.js sont plus fréquentes.
 
-Chromium et Node.js représentent des prouesses impressionnantes d'ingénierie produites par des milliers de développeurs talentueux. Compte tenu de leur popularité, leur sécurité est soigneusement testée et analysée par des chercheurs en sécurité tout aussi compétents. Many of those researchers [disclose vulnerabilities responsibly][responsible-disclosure], which generally means that researchers will give Chromium and Node.js some time to fix issues before publishing them. Votre application sera plus sécurisée si elle exécute une version récente d'Electron (et donc Chromium et Node.js) dont les problèmes de sécurité potentiels ne sont pas aussi connus.
+Chromium et Node.js représentent des prouesses impressionnantes d'ingénierie produites par des milliers de développeurs talentueux. Compte tenu de leur popularité, leur sécurité est soigneusement testée et analysée par des chercheurs en sécurité tout aussi compétents. Beaucoup de ces chercheurs [révèlent des vulnérabilités de manière responsable][responsible-disclosure], ce qui signifie généralement que les chercheurs donnent de leur temps à Chromium et Node.js pour résoudre les problèmes avant de les publier. Votre application sera plus sécurisée si elle exécute une version récente d'Electron (et donc Chromium et Node.js) dont les problèmes de sécurité potentiels ne sont pas aussi connus.
 
 [browser-window]: ../api/browser-window.md
 

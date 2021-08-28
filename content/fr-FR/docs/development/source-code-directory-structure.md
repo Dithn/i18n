@@ -1,4 +1,4 @@
-# Hiérarchie du Code Source
+# Structure du répertoire du Code Source
 
 Le code source d'Electron est séparé en plusieurs parties, principalement suivant les conventions de séparation de Chromium.
 
@@ -94,7 +94,5 @@ script/ - L'ensemble de tous les scripts que Electron exécute pour une variét�
     <unk> ─ ─ uploaders/ - Envoie divers fichiers liés à la version pendant la sortie.
 ```
 
-* **tools** - Helper scripts used by GN files.
-  * Les scripts mis ici ne devraient jamais être invoqués par les utilisateurs directement, contrairement à ceux de `script`.
 * **typings** - Types TypeScript pour le code interne d'Electron.
-* **vendor** - Source code for some third party dependencies.
+* **vendor** - Code source de certaines dépendances tierces.

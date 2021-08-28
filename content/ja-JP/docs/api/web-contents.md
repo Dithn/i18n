@@ -53,7 +53,7 @@ console.log(webContents)
 
 #### イベント: 'did-fail-load'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `errorCode` Integer
@@ -67,7 +67,7 @@ console.log(webContents)
 
 #### イベント: 'did-fail-provisional-load'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `errorCode` Integer
@@ -81,7 +81,7 @@ console.log(webContents)
 
 #### イベント: 'did-frame-finish-load'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `isMainFrame` Boolean
@@ -100,7 +100,7 @@ console.log(webContents)
 
 #### イベント: 'dom-ready'
 
-戻り値:
+戻り値：
 
 * `event` Event
 
@@ -108,7 +108,7 @@ console.log(webContents)
 
 #### イベント: 'page-title-updated'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `title` String
@@ -118,7 +118,7 @@ console.log(webContents)
 
 #### イベント: 'page-favicon-updated'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `favicons` String[] - URLの配列。
@@ -127,7 +127,7 @@ console.log(webContents)
 
 #### イベント: 'new-window' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` NewWindowWebContentsEvent
 * `url` String
@@ -144,7 +144,7 @@ console.log(webContents)
 
 デフォルトでは、`url` の新しい `BrowserWindow` が作成されます。
 
-`event.preventDefault()` を呼ぶと、Electron が自動的に新しい [`BrowserWindow`](browser-window.md) を作成するのを防ぎます。 もし `event.preventDefault()` を呼び、新しい `BrowserWindow` を手動で作る場合、新しい [`BrowserWindow`](browser-window.md) インスタンスの参照を [`event.newGuest`](browser-window.md) にセットしなければ、予期しない動作になる可能性があります。 例:
+`event.preventDefault()` を呼ぶと、Electron が自動的に新しい [`BrowserWindow`](browser-window.md) を作成するのを防ぎます。 もし `event.preventDefault()` を呼び、新しい `BrowserWindow` を手動で作る場合、新しい [`BrowserWindow`](browser-window.md) インスタンスの参照を [`event.newGuest`](browser-window.md) にセットしなければ、予期しない動作になる可能性があります。 以下がその例です。
 
 ```javascript
 myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
@@ -172,16 +172,17 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-create-window'
 
-戻り値:
+戻り値：
+
 * `window` BrowserWindow
 * `details` Object
-    * `url` String - 作成したウインドウの URL。
-    * `frameName` String - `window.open()` の呼び出しで作成したウインドウに指定した名前。
-    * `options` BrowserWindowConstructorOptions - その BrowserWindow の作成に使用したオプション。 これはマージされたもので、親ウインドウから継承したオプション、`window.open()` の `features` 文字列から解析したオプション、[`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler) で指定したオプションの順で優先されます。 認識できないオプションが取り除かれることはありません。
-    * `additionalFeatures` String[] - 非標準の機能 (この機能は Chromium や Electron によって処理されません) _非推奨_
-    * `referrer` [Referrer](structures/referrer.md) - 新しいウィンドウへ渡される Referrer。 リファラのポリシーに応じた `Referer` ヘッダーが送信されるとは限りません。
-    * `postBody` [PostBody](structures/post-body.md) (任意) - 新しいウィンドウに送信される POST データと、設定される適切なヘッダです。 送信する POST データが無い場合、値は `null` になります。 これは `target=_blank` を設定したフォームによってウィンドウが作成されている場合にのみセットされます。
-    * `disposition` String - `default`、`foreground-tab`、`background-tab`、`new-window`、`save-to-disk`、`other` にできます。
+  * `url` String - 作成したウインドウの URL。
+  * `frameName` String - `window.open()` の呼び出しで作成したウインドウに指定した名前。
+  * `options` BrowserWindowConstructorOptions - その BrowserWindow の作成に使用したオプション。 これはマージされたもので、親ウインドウから継承したオプション、`window.open()` の `features` 文字列から解析したオプション、[`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler) で指定したオプションの順で優先されます。 認識できないオプションが取り除かれることはありません。
+  * `additionalFeatures` String[] - 非標準の機能 (この機能は Chromium や Electron によって処理されません) _非推奨_
+  * `referrer` [Referrer](structures/referrer.md) - 新しいウィンドウへ渡される Referrer。 リファラのポリシーに応じた `Referer` ヘッダーが送信されるとは限りません。
+  * `postBody` [PostBody](structures/post-body.md) (任意) - 新しいウィンドウに送信される POST データと、設定される適切なヘッダです。 送信する POST データが無い場合、値は `null` になります。 これは `target=_blank` を設定したフォームによってウィンドウが作成されている場合にのみセットされます。
+  * `disposition` String - `default`、`foreground-tab`、`background-tab`、`new-window`、`save-to-disk`、`other` にできます。
 
 レンダラーで `window.open` を使用したウィンドウの作成に成功した _後_ に発生します。 [`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler) からウインドウの作成がキャンセルされた場合には発生しません。
 
@@ -189,7 +190,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'will-navigate'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -204,7 +205,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-start-navigation'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -217,7 +218,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'will-redirect'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -234,7 +235,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-redirect-navigation'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -249,7 +250,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-navigate'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -262,7 +263,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-frame-navigate'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -278,7 +279,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'did-navigate-in-page'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -292,7 +293,7 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### イベント: 'will-prevent-unload'
 
-戻り値:
+戻り値：
 
 * `event` Event
 
@@ -306,9 +307,9 @@ const win = new BrowserWindow({ width: 800, height: 600 })
 win.webContents.on('will-prevent-unload', (event) => {
   const choice = dialog.showMessageBoxSync(win, {
     type: 'question',
-    buttons: ['このページを離れる', 'キャンセル'],
-    title: 'このサイトを離れてもよろしいですか?',
-    message: '行った変更が保存されない可能性があります。',
+    buttons: ['Leave', 'Stay'],
+    title: 'Do you want to leave this site?',
+    message: 'Changes you made may not be saved.',
     defaultId: 0,
     cancelId: 1
   })
@@ -321,7 +322,7 @@ win.webContents.on('will-prevent-unload', (event) => {
 
 #### イベント: 'crashed' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `killed` Boolean
@@ -332,21 +333,21 @@ win.webContents.on('will-prevent-unload', (event) => {
 
 #### イベント: 'render-process-gone'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `details` Object
-  * `reason` String - The reason the render process is gone.  取りうる値:
-    * `clean-exit` - ゼロの終了コードでプロセスが終了した
-    * `abnormal-exit` - 非ゼロの終了コードでプロセスが終了した
-    * `killed` - プロセスが SIGTERM シグナルの送信などの方法でキルされた
+  * `reason` String - レンダープロセスがなくなった理由。  取りうる値:
+    * `clean-exit` - 終了コードが0でプロセスが終了した
+    * `abnormal-exit` - ゼロでない終了コードでプロセスを終了しました。
+    * `killed` - プロセスへSIGTERMシグナルが送信されたか、その他の方法で殺されました。
     * `crashed` - プロセスがクラッシュした
     * `oom` - プロセスがメモリ不足になった
     * `launch-failed` - プロセスが正常に起動されなかった
-    * `integrity-failure` - Windows コードの整合性チェックに失敗した
+    * `integrity-failure` - Windows コードの整合性チェックに失敗しました
   * `exitCode` Integer - プロセスの終了コードです。`reason` が `launch-failed` でなければ、`exitCode` はプラットフォーム固有の起動失敗のエラーコードになります。
 
-renderer processが予期せず消えたときに発生します。  プロセスがクラッシュした場合やキルされた場合は正常です。
+renderer processが予期せず消えたときに発生します。  プロセスがクラッシュした場合やまたは殺された場合、これは正常です。
 
 #### イベント: 'unresponsive'
 
@@ -358,7 +359,7 @@ Webページが応答しなくなるときに発生します。
 
 #### イベント: 'plugin-crashed'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `name` String
@@ -372,23 +373,23 @@ Webページが応答しなくなるときに発生します。
 
 #### イベント: 'before-input-event'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `input` Object - 入力プロパティ。
   * `type` String - `keyUp` か `keyDown`。
-  * `key` String - [KeyboardEvent.key][keyboardevent] と同等。
-  * `code` String - [KeyboardEvent.code][keyboardevent] と同等。
-  * `isAutoRepeat` Boolean - [KeyboardEvent.repeat][keyboardevent] と同等。
+  * `key` String - [KeyboardEvent.key][keyboardevent] と等価です。
+  * `code` String - [KeyboardEvent.code][keyboardevent] と等価です。
+  * `isAutoRepeat` Boolean - [KeyboardEvent.repeat][keyboardevent] と等価です。
   * `isComposing` Boolean - [KeyboardEvent.isComposing][keyboardevent] と等価です。
-  * `shift` Boolean - [KeyboardEvent.shiftKey][keyboardevent] と同等。
-  * `control` Boolean - [KeyboardEvent.controlKey][keyboardevent] と同等。
-  * `alt` Boolean - [KeyboardEvent.altKey][keyboardevent] と同等。
-  * `meta` Boolean - [KeyboardEvent.metaKey][keyboardevent] と同等。
+  * `shift` Boolean - [KeyboardEvent.shiftKey][keyboardevent] と等価です。
+  * `control` Boolean - [KeyboardEvent.controlKey][keyboardevent] と等価です。
+  * `alt` Boolean - [KeyboardEvent.altKey][keyboardevent] と等価です。
+  * `meta` Boolean - [KeyboardEvent.metaKey][keyboardevent] と等価です。
 
 ページ内の `keydown` と `keyup` イベントが発生する直前に発行されます。 `event.preventDefault` を呼ぶと、ページの `keydown`/`keyup` イベントとメニューショートカットを阻害します。
 
-メニューショートカットだけを阻害するには、[`setIgnoreMenuShortcuts`](#contentssetignoremenushortcutsignore) を使用します。
+メニューショートカットだけを阻害するには、以下のように [`setIgnoreMenuShortcuts`](#contentssetignoremenushortcutsignore) を使用します。
 
 ```javascript
 const { BrowserWindow } = require('electron')
@@ -396,8 +397,8 @@ const { BrowserWindow } = require('electron')
 const win = new BrowserWindow({ width: 800, height: 600 })
 
 win.webContents.on('before-input-event', (event, input) => {
-  // For example, only enable application menu keyboard shortcuts when
-  // Ctrl/Cmd are down.
+  // 例として、Ctrl/Cmd が押下されているときだけアプリケーションメニューの
+  // キーボードショートカットを有効にしてみます。
   win.webContents.setIgnoreMenuShortcuts(!input.control && !input.meta)
 })
 ```
@@ -412,7 +413,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'zoom-changed'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `zoomDirection` String - `in` か `out` にできます。
@@ -433,11 +434,11 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'certificate-error'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
-* `error` String - エラーコード.
+* `error` String - エラーコード。
 * `certificate` [Certificate](structures/certificate.md)
 * `callback` Function
   * `isTrusted` Boolean - 証明書が信頼できるとみなされるかどうかを示す。
@@ -448,7 +449,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'select-client-certificate'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` URL
@@ -462,7 +463,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'login'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `authenticationResponseDetails` Object
@@ -477,13 +478,13 @@ win.webContents.on('before-input-event', (event, input) => {
   * `username` String (任意)
   * `password` String (任意)
 
-`webContents` が Basic 認証を要求すると発生します。
+`webContents` がBasic認証を要求すると発生します。
 
 使い方は、[`app` の `login` イベント](app.md#event-login) と同じです。
 
 #### イベント: 'found-in-page'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `result` Object
@@ -505,7 +506,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'did-change-theme-color'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `color` (String | null) - '#rrggbb' 形式のテーマカラー。 テーマカラーが設定されていないと `null` です。
@@ -518,7 +519,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'update-target-url'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `url` String
@@ -527,7 +528,7 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'cursor-changed'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `type` String
@@ -542,12 +543,12 @@ win.webContents.on('before-input-event', (event, input) => {
 
 #### イベント: 'context-menu'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `params` Object
-  * `x` Integer - x 座標.
-  * `y` Integer - y 座標.
+  * `x` Integer - x 座標。
+  * `y` Integer - y 座標。
   * `linkURL` String - コンテキストメニューが呼び出されたノードを囲うリンク URL。
   * `linkText` String - リンクに関連付けたテキスト。 リンクのコンテンツが画像の場合は、空文字列になります。
   * `pageURL` String - コンテキストメニューが呼び出された最上位のページの URL。
@@ -557,12 +558,18 @@ win.webContents.on('before-input-event', (event, input) => {
   * `hasImageContents` Boolean - 空でないコンテンツ画像の上でコンテキストメニューが呼び出されたかどうか。
   * `isEditable` Boolean - コンテキストが編集可能かどうか。
   * `selectionText` String - コンテキストメニューが呼び出されたときの選択テキスト。
-  * `titleText` String - コンテキストが呼び出されたときの選択要素の、タイトルまたは alt テキスト。
+  * `titleText` String - コンテキストメニューが呼び出された選択範囲のタイトルテキスト。
+  * `altText` String - コンテキストメニューが呼び出された選択範囲の代替テキスト。
+  * `suggestedFilename` String - コンテキストメニューの 'リンク先を名前を付けて保存' オプションでファイルを保存する際に使用されるファイル名の候補。
+  * `selectionRect` [Rectangle](structures/rectangle.md) - 選択範囲の document 空間における座標を表す矩形。
+  * `selectionStartOffset` Number - 選択テキストの開始位置。
+  * `referrerPolicy` [Referrer](structures/referrer.md) - メニューが呼び出されるフレームのリファラポリシー。
   * `misspelledWord` String - カーソルの下のスペルミスした単語 (もしあるならば)。
   * `dictionarySuggestions` String[] - ユーザに `misspelledWord` の置き換えを示す推測した単語の配列。  単語のスペルミスがあり、スペルチェッカーが有効な場合にのみ利用できます。
   * `frameCharset` String - メニューが呼び出されたときのフレームのテキストエンコーディング。
   * `inputFieldType` String - 入力フィールド内でコンテキストメニューが呼び出されたときの、そのタイプ。 `none`、`plainText`、`password`、`other` になれる。
-  * `menuSourceType` String - コンテキストメニューを呼び出した入力ソース。 `none`、`mouse`、`keyboard`、`touch`、`touchMenu` のいずれかです。
+  * `spellcheckEnabled` Boolean - そのコンテキストが編集可能な場合に、スペルチェックが有効かどうか。
+  * `menuSourceType` String - コンテキストメニューを呼び出した入力ソース。 `none`, `mouse`, `keyboard`, `touch`, `touchMenu`, `longPress`, `longTap`, `touchHandle`, `stylus`, `adjustSelection`, `adjustSelectionReset` のいずれかになります。
   * `mediaFlags` Object - コンテキストメニューが呼び出されたメディア要素のフラグ。
     * `inError` Boolean - メディア要素がクラッシュしたかどうか。
     * `isPaused` Boolean - メディア要素が一時停止されているかどうか。
@@ -571,21 +578,27 @@ win.webContents.on('before-input-event', (event, input) => {
     * `isLooping` Boolean - メディア要素をループしているかどうか。
     * `isControlsVisible` Boolean - メディア要素のコントロールが見えるかどうか。
     * `canToggleControls` Boolean - メディア要素のコントロールがトグル切り替えできるかどうか。
+    * `canPrint` Boolean - そのメディア要素が印刷できるかどうか。
+    * `canSave` Boolean - そのメディア要素がダウンロードできるかどうか。
+    * `canShowPictureInPicture` Boolean - そのメディア要素がピクチャインピクチャ表示できるかどうか。
+    * `isShowingPictureInPicture` Boolean - そのメディア要素をピクチャインピクチャ表示しているかどうか。
     * `canRotate` Boolean - メディア要素を回転できるかどうか。
+    * `canLoop` Boolean - そのメディア要素をループ再生できるかどうか。
   * `editFlags` Object - これらのフラグは、レンダラーが対応するアクションを実行できると信頼しているかどうかを示します。
     * `canUndo` Boolean - レンダラーが、undo できると信頼しているかどうか。
     * `canUndo` Boolean - レンダラーが、redo できると信頼しているかどうか。
     * `canCut` Boolean - レンダラーが、カットできると信頼しているかどうか。
-    * `canCopy` Boolean - レンダラーが、コピーできると信頼しているかどうか。
+    * `canCopy` Boolean - レンダラーがコピーできると信頼しているかどうか。
     * `canPaste` Boolean - レンダラーが、ペーストできると信頼しているかどうか。
     * `canDelete` Boolean - レンダラーが、削除できると信頼しているかどうか。
     * `canSelectAll` Boolean - レンダラーが、全選択できると信頼しているかどうか。
+    * `canEditRichly` Boolean - レンダラーがテキストをリッチ編集できると信頼しているかどうか。
 
 処理が必要な新しいコンテキストメニューがあるときに発行されます。
 
 #### イベント: 'select-bluetooth-device'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `devices` [BluetoothDevice[]](structures/bluetooth-device.md)
@@ -618,7 +631,7 @@ app.whenReady().then(() => {
 
 #### イベント: 'paint'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `dirtyRect` [Rectangle](structures/rectangle.md)
@@ -642,7 +655,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'will-attach-webview'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `webPreferences` WebPreferences - ゲストページで使用されるウェブ設定。 このオブジェクトを変更して、ゲストページの設定を調整できます。
@@ -656,7 +669,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'did-attach-webview'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `webContents` WebContents - `<webview>` で使われるゲスト WebContents。
@@ -665,7 +678,7 @@ win.loadURL('http://github.com')
 
 #### Event: 'console-message'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `level` Integer - 0 から 3 のログレベル。 順に `verbose`、`info`、`warning`、`error` に対応します。
@@ -677,7 +690,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'preload-error'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `preloadPath` String
@@ -687,7 +700,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'ipc-message'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `channel` String
@@ -697,7 +710,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'ipc-message-sync'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `channel` String
@@ -707,7 +720,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'desktop-capturer-get-sources'
 
-戻り値:
+戻り値：
 
 * `event` Event
 
@@ -715,7 +728,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'remote-require' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` IpcMainEvent
 * `モジュール名` String
@@ -724,7 +737,7 @@ win.loadURL('http://github.com')
 
 #### イベント: 'remote-get-global' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` IpcMainEvent
 * `globalName` String
@@ -733,32 +746,32 @@ win.loadURL('http://github.com')
 
 #### イベント: 'remote-get-builtin' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` IpcMainEvent
 * `モジュール名` String
 
-レンダラープロセス内で `remote.getBuiltin()` が呼ばれたときに発行されます。 `event.preventDefault()` を呼ぶとモジュールの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
+レンダラープロセス内で `remote.getBuiltin()` が呼ばれたときに発生します。 `event.preventDefault()` を呼ぶとモジュールの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
 
 #### イベント: 'remote-get-current-window' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` IpcMainEvent
 
-レンダラープロセス内で `remote.getCurrentWindow()` が呼ばれたときに発行されます。 `event.preventDefault()` を呼ぶとオブジェクトの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
+レンダラープロセス内で `remote.getCurrentWindow()` が呼ばれたときに発生します。 `event.preventDefault()` を呼ぶとオブジェクトの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
 
 #### イベント: 'remote-get-current-web-contents' _非推奨_
 
-戻り値:
+戻り値：
 
 * `event` IpcMainEvent
 
-レンダラープロセス内で `remote.getCurrentWebContents()` が呼ばれたときに発行されます。 `event.preventDefault()` を呼ぶとオブジェクトの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
+レンダラープロセス内で `remote.getCurrentWebContents()` が呼ばれたときに発生します。 `event.preventDefault()` を呼ぶとオブジェクトの返却が阻害されます。 `event.returnValue` にセットすることでカスタムな値を返すことが出来ます。
 
 #### イベント: 'preferred-size-changed'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `preferredSize` [Size](structures/size.md) - スクロールなしでドキュメントのレイアウトを格納するのに必要な最小サイズ。
@@ -776,7 +789,7 @@ win.loadURL('http://github.com')
   * `httpReferrer` (String | [Referrer](structures/referrer.md)) (任意) - HTTPリファラのURL。
   * `userAgent` String (任意) - リクエスト元のユーザーエージェント。
   * `extraHeaders` String (任意) - "\n" で区切られた追加のヘッダー。
-  * `postData` ([UploadRawData[]](structures/upload-raw-data.md) | [UploadFile[]](structures/upload-file.md)) (任意)
+  * `postData` ([UploadRawData](structures/upload-raw-data.md) | [UploadFile](structures/upload-file.md))[] (任意)
   * `baseURLForDataURL` String (任意) - データURLによってロードされたファイルの (最後のパス区切り文字を含む) ベースURL。 これは指定された `url` がデータURLで、他のファイルをロードする必要がある場合のみ必要です。
 
 戻り値 `Promise<void>` - ページ読み込みが完了した時 ([`did-finish-load`](web-contents.md#event-did-finish-load) を参照) に解決され、ページの読み込みに失敗した時 ([`did-fail-load`](web-contents.md#event-did-fail-load) を参照) に拒否される Promise。 無操作拒否ハンドラーが既にアタッチされているため、未処理の拒否エラーは回避されます。
@@ -1020,7 +1033,12 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
   * `details` Object
     * `url` String - `window.open()` に渡されて _解決された_ URL。 例えば `window.open('foo')` でウインドウを開くと、これは `https://the-origin/the/current/path/foo` のようになります。
     * `frameName` String - `window.open()` で指定されたウインドウ名
-    * `features` String - `window.open()` で指定されたウインドウ機能のカンマ区切りリスト。 戻り値 `{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}` - `deny` を返すと新規ウインドウの作成をキャンセルします。 `allow` を返すと新規ウインドウが作成されます。 `overrideBrowserWindowOptions` を指定すると、作成されるウィンドウをカスタマイズできます。 null、undefined、規定の 'action' の値を持たないオブジェクトといった認識されない値を返すと、コンソールエラーになり、`{action: 'deny'}` を返すのと同じ効果となります。
+    * `features` String - `window.open()` で指定されたウインドウ機能のカンマ区切りリスト。
+    * `disposition` String - `default`、`foreground-tab`、`background-tab`、`new-window`、`save-to-disk`、`other` のいずれかにできます。
+    * `referrer` [Referrer](structures/referrer.md) - 新しいウィンドウへ渡される Referrer。 Referrer のポリシーに依存しているので、`Referrer` ヘッダを送信されるようにしてもしなくてもかまいません。
+    * `postBody` [PostBody](structures/post-body.md) (任意) - 新しいウィンドウに送信する POST データと、それにセットする適切なヘッダ。 送信する POST データが無い場合、値は `null` になります。 これは `target=_blank` を設定したフォームによってウィンドウが作成されている場合にのみセットされます。
+
+  戻り値 `{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}` - `deny` を返すと新規ウインドウの作成をキャンセルします。 `allow` を返すと新規ウインドウが作成されます。 `overrideBrowserWindowOptions` を指定すると、作成されるウィンドウをカスタマイズできます。 null、undefined、規定の 'action' の値を持たないオブジェクトといった認識されない値を返すと、コンソールエラーになり、`{action: 'deny'}` を返すのと同じ効果となります。
 
 レンダラーから `window.open()` が呼び出されたときに、ウィンドウの作成前に呼び出されます。 詳細や `did-create-window` と併せた使用方法については [`window.open()`](window-open.md) をご参照ください。
 
@@ -1074,8 +1092,8 @@ contents.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1"
 > **注意**: Electron ではデフォルトで視覚ズームは無効化されています。 再び有効にする場合は以下を呼び出します。
 > 
 > ```js
-contents.setVisualZoomLevelLimits(1, 3)
-```
+> contents.setVisualZoomLevelLimits(1, 3)
+> ```
 
 #### `contents.undo()`
 
@@ -1145,7 +1163,7 @@ contents.setVisualZoomLevelLimits(1, 3)
 * `text` String - 検索するコンテンツ。空にしてはいけません。
 * `options` Object (任意)
   * `forward` Boolean (任意) - 前方または後方を検索するかどうか。省略値は `true`。
-  * `findNext` Boolean (任意) - 操作が最初のリクエストなのか、辿っているのかどうか。省略値は `false`。
+  * `findNext` Boolean (任意) - この要求で新規テキスト検索セッションを開始するかどうか。 最初の要求では `true` に、二度目以降の要求では `false` にする必要があります。 省略値は `false` 。
   * `matchCase` Boolean (任意) - 大文字と小文字を区別する検索かどうか。省略値は `false`。
 
 戻り値 `Integer` - リクエストに使われたリクエスト ID。
@@ -1183,18 +1201,20 @@ console.log(requestId)
 
 Returns `Boolean` - このページがキャプチャされているかどうか。 キャプチャーの数が 0 より大きい場合は true を返します。
 
-#### `contents.incrementCapturerCount([size, stayHidden])`
+#### `contents.incrementCapturerCount([size, stayHidden, stayAwake])`
 
 * `size` [Size](structures/size.md) (任意) - キャプチャの優先サイズ。
 * `stayHidden` Boolean (任意) -  ページを表示せずに非表示のままにします。
+* `stayAwake` Boolean (任意) -  システムをスリープさせずに、起きたままにします。
 
 キャプチャ回数は 1 ずつ増加します。 ブラウザーウインドウが非表示でもキャプチャ回数がゼロではない場合、ページは表示されていると見なされます。 ページを非表示のままにする場合は、`stayHidden` を true に設定していることを確認してください。
 
 これは Page Visibility API にも影響を与えます。
 
-#### `contents.decrementCapturerCount([stayHidden])`
+#### `contents.decrementCapturerCount([stayHidden, stayAwake])`
 
 * `stayHidden` Boolean (任意) -  ページを表示状態にせず非表示のままにします。
+* `stayAwake` Boolean (任意) -  システムをスリープさせずに、起きたままにします。
 
 キャプチャ回数は 1 ずつ減少します。 ブラウザウィンドウが隠されるまたはオクルージョンされるか、キャプチャーカウントが 0 になると、ページは非表示状態やオクルージョン状態にセットされます。 代わりに非表示のキャプチャ回数を減らしたい場合は、`stayHidden` を true に設定してください。
 
@@ -1207,8 +1227,8 @@ Returns `Boolean` - このページがキャプチャされているかどうか
 #### `contents.print([options], [callback])`
 
 * `options` Object (任意)
-  * `silent` Boolean (任意) - プリンタの設定をユーザに尋ねないかどうか。 省略値は、`false` です。
-  * `printBackground` Boolean (任意) - ウェブページの背景色と画像を印刷するかどうか。 省略値は、`false` です。
+  * `silent` Boolean (任意) - プリンタの設定をユーザに尋ねないかどうか。 省略値は `false` です。
+  * `printBackground` Boolean (任意) - ウェブページの背景色と画像を印刷するかどうか。 省略値は `false` です。
   * `deviceName` String (任意) - 使用するプリンタデバイスの名前をセットします。 '人間向けの' 名称ではなくシステム定義名である必要があります。例えば、'Brother QL-820NWB' ではなく 'Brother_QL_820NWB' とします。
   * `color` Boolean (任意) - 印刷するウェブページをカラーにするかグレースケールにするかを設定します。 省略値は `true` です。
   * `margins` Object (任意)
@@ -1217,12 +1237,12 @@ Returns `Boolean` - このページがキャプチャされているかどうか
     * `bottom` Number (任意) - 印刷されたウェブページの下側のマージン。ピクセル単位です。
     * `left` Number (任意) - 印刷されたウェブページの左側のマージン。ピクセル単位です。
     * `right` Number (任意) - 印刷されたウェブページの右側のマージン。ピクセル単位です。
-  * `landscape` Boolean (任意) - ウェブページを横向きモードで印刷するかどうか。 省略値は、`false` です。
+  * `landscape` Boolean (任意) - ウェブページを横向きモードで印刷するかどうか。 省略値は `false` です。
   * `scaleFactor` Number (任意) - ウェブページのスケール係数。
   * `pagesPerSheet` Number (任意) - ページシートごとに印刷するページ数。
   * `collate` Boolean (任意) - ウェブページを校合するかどうか。
   * `copies` Number (任意) - 印刷するウェブページの版数。
-  * `pageRanges` Object[]  (optional) - The page range to print. macOS では 1 つの範囲のみが許可されています。
+  * `pageRanges` Object[]  (任意) - 印刷するページ範囲。 macOS では 1 つの範囲のみが許可されています。
     * `from` Number - 印刷する最初のページのインデックス (0 始まり)。
     * `to` Number - 印刷する最後のページのインデックス (これを含む) (0 始まり)。
   * `duplexMode` String (任意) - 印刷されるウェブページの両面モードを設定します。 `simplex`、`shortEdge`、`longEdge` のいずれかにできます。
@@ -1307,7 +1327,7 @@ const win = new BrowserWindow({ width: 800, height: 600 })
 win.loadURL('http://github.com')
 
 win.webContents.on('did-finish-load', () => {
-  // Use default printing options
+  // 既定の印刷オプションを使用します
   win.webContents.printToPDF({}).then(data => {
     const pdfPath = path.join(os.homedir(), 'Desktop', 'temp.pdf')
     fs.writeFile(pdfPath, data, (error) => {
@@ -1386,7 +1406,7 @@ win.webContents.on('devtools-opened', () => {
 ```
 
 ```js
-// Main process
+// メインプロセス
 const { ipcMain, webContents } = require('electron')
 ipcMain.on('open-devtools', (event, targetContentsId, devtoolsContentsId) => {
   const target = webContents.fromId(targetContentsId)
@@ -1542,7 +1562,7 @@ ipcMain.on('ping', (event) => {
 
 転送された `MessagePortMain` オブジェクトは、レンダラープロセスで発生したイベントの `ports` プロパティにアクセスすれば利用できます。 レンダラーに着くと、それらはネイティブの DOM `MessagePort` オブジェクトになります。
 
-例:
+以下がその例です。
 
 ```js
 // メインプロセス

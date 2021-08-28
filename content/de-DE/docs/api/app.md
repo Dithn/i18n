@@ -2,7 +2,7 @@
 
 > Kontrolliere den Ereignisverlauf deiner Anwendung.
 
-Prozess: [Main](../glossary.md#main-process)
+Prozess: [Haupt](../glossary.md#main-process)
 
 Das folgende Beispiel zeigt, wie die Applikation beendet wird, wenn das letzte Fenster geschlossen wurde:
 
@@ -25,7 +25,7 @@ In den meisten Fällen, sollte man alles im `ready` Eventhandler machen.
 
 ### Event: 'ready'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `launchInfo` Record<string, any> | [NotificationResponse](structures/notification-response.md) _macOS_
@@ -40,7 +40,7 @@ Wenn du keinen einzigen Listener für dieses Event nutzt und alle Fenster geschl
 
 ### Event: 'before-quit'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -52,7 +52,7 @@ Ausgelöst, bevor sich die Fenster der Anwendung schließen. Ein Aufruf von `eve
 
 ### Event: 'before-quit'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -64,7 +64,7 @@ Schau dir die Beschreibung/Dokumentation des `window-all-closed` Events an um di
 
 ### Event: 'quit'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `exitCode` Integer
@@ -75,7 +75,7 @@ Wird ausgelöst wenn die App beendet wird.
 
 ### Event: 'open-file' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `path` String
@@ -88,18 +88,20 @@ In Windows musst du `process.argv` (im Main-Prozess) parsen, um den Dateipfad zu
 
 ### Event: 'open-url' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Wird ausgelöst wenn der Nutzer versucht, eine URL mit der App zu öffnen. Your application's `Info.plist` file must define the URL scheme within the `CFBundleURLTypes` key, and set `NSPrincipalClass` to `AtomApplication`.
+<p spaces-before="0">Wird ausgelöst wenn der Nutzer versucht, eine URL mit der App zu öffnen. Your application's
+<code>Info.plist` file must define the URL scheme within the `CFBundleURLTypes` key, and set `NSPrincipalClass` to `AtomApplication`.</p>
 
 Du musst `event.preventDefault()` aufrufen um dieses Event selbst zu nutzen.
 
 ### Event: 'activate' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `hasVisibleWindows` Boolean
@@ -108,7 +110,7 @@ Wird ausgelöst wenn die App aktiviert wird. Eine ganze Menge an Aktionen könne
 
 ### Event: 'did-become-active' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -116,7 +118,7 @@ Emitted when mac application become active. Difference from `activate` event is 
 
 ### Event: 'continue-activity' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `type` String - Ein string zum identifizieren einer Aktivität. Maped auf [`NSUserActivity.activityType`][activity-type].
@@ -124,11 +126,11 @@ Rückgabewert:
 
 Wird während [Handoff][handoff] ausgelöst, wenn eine Aktivität von einem anderen Gerät wieder aufgenommen werden soll. Du solltest `event.preventDefault()` aufrufen wenn du dieses Event verwenden willst.
 
-Eine Benutzeraktivität kann nur in einer App fortgesetzt werden, die die gleiche Entwicklerteam-ID als die Quell-App der Aktivität hat und den Typ der Aktivität unterstützt. Supported activity types are specified in the app's `Info.plist` under the `NSUserActivityTypes` key.
+Eine Benutzeraktivität kann nur in einer App fortgesetzt werden, die die gleiche Entwicklerteam-ID als die Quell-App der Aktivität hat und den Typ der Aktivität unterstützt. Unterstützte Aktivitätstypen sind spezifiziert in `Info.plist` unter dem `NSUserActivityTypes` Schlüssel.
 
 ### Event: 'will-continue-activity' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `type` String - Ein string zum identifizieren einer Aktivität. Maped auf [`NSUserActivity.activityType`][activity-type].
@@ -137,7 +139,7 @@ Wird während [Handoff][handoff] ausgelöst, bevor eine Aktivität von einem and
 
 ### Event: 'continue-activity-error' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `type` String - Ein string zum identifizieren einer Aktivität. Maped auf [`NSUserActivity.activityType`][activity-type].
@@ -147,7 +149,7 @@ Wird während [Handoff][handoff] ausgelöst, wenn eine Aktivität von einem ande
 
 ### Ereignis: 'activity-was-continued' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `type` String - Ein string zum identifizieren einer Aktivität. Maped auf [`NSUserActivity.activityType`][activity-type].
@@ -157,17 +159,17 @@ Wird während [Handoff][handoff] ausgelöst, wenn eine Aktivität von diesem Ger
 
 ### Event: 'update-activity-state' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `type` String - Ein string zum identifizieren einer Aktivität. Maped auf [`NSUserActivity.activityType`][activity-type].
 * `userInfo` unknown - Enthält app-spezifischen Zustand, der von der Aktivität gespeichert wird.
 
-Wird ausgelöst wenn [Handoff][handoff] auf einem anderen Gerät fortgesetzt wird. Wenn Sie den zu übertragenden Status aktualisieren müssen, sollten Sie `event.preventDefault()` sofort aufrufen, ein neues `userInfo-Wörterbuch` erstellen und `app.updateCurrentActivity()` zeitnah aufrufen. Otherwise, the operation will fail and `continue-activity-error` will be called.
+Wird ausgelöst wenn [Handoff][handoff] auf einem anderen Gerät fortgesetzt wird. Wenn Sie den zu übertragenden Status aktualisieren müssen, sollten Sie `event.preventDefault()` sofort aufrufen, ein neues `userInfo-Wörterbuch` erstellen und `app.updateCurrentActivity()` zeitnah aufrufen. Andernfalls wird die Operation fehlschlagen und `Continue-Activity-error` wird aufgerufen.
 
 ### Event: 'new-window-for-tab' _macOS_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -175,16 +177,16 @@ Emittiert, wenn der Benutzer auf die neue Registerkarte macOS mit systemeigenem 
 
 ### Event: 'browser-window-blur'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `window` [BrowserWindow](browser-window.md)
 
-Emitted when a [browserWindow](browser-window.md) gets blurred.
+Wird ausgegeben, wenn ein [ browserWindow ](browser-window.md) ausgeblendet wird.
 
 ### Event: 'browser-window-focus'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `window` [BrowserWindow](browser-window.md)
@@ -193,7 +195,7 @@ Emittiert wenn ein [browserWindow](browser-window.md) in den Fokus kommt.
 
 ### Event: 'browser-window-created'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `window` [BrowserWindow](browser-window.md)
@@ -202,7 +204,7 @@ Emittiert wenn ein neues [browserWindow](browser-window.md) erstellt wird.
 
 ### Event: 'web-contents-created'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -211,12 +213,12 @@ Emittiert wen ein neues [webContents](web-contents.md) erstellt wird.
 
 ### Event: 'certificate-error'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
-* `url` String
-* `error` String - Der error code
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>error` String - Der error code
 * `certificate` [Certificate](structures/certificate.md)
 * `callback` Function
   * `isTrusted` Boolean - Gibt an ob das Zertifikat als vertrauenswürdig angesehen werden soll
@@ -239,7 +241,7 @@ app.on('certificate-error', (event, webContents, url, error, certificate, callba
 
 ### Event: 'select-client-certificate'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -263,13 +265,13 @@ app.on('select-client-certificate', (event, webContents, url, list, callback) =>
 
 ### Event: 'login'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
-* `authenticationResponseDetails` Object
+* `authenticationResponseDetails` Objekt
   * `url` URL
-* `authInfo` Object
+* `authInfo` Objekt
   * `isProxy` Boolean
   * `scheme` String
   * `host` String
@@ -300,7 +302,7 @@ Emitted whenever there is a GPU info update.
 
 ### Event: 'gpu-process-crashed' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `killed` Boolean
@@ -311,7 +313,7 @@ Emitted when the GPU process crashes or is killed.
 
 ### Event: 'renderer-process-crashed' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -323,11 +325,11 @@ Emitted when the renderer process of `webContents` crashes or is killed.
 
 ### Event: 'render-process-gone'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
-* `details` Object
+* `details` Objekt
   * `reason` String - The reason the render process is gone.  Mögliche werte:
     * `clean-exit` - Process exited with an exit code of zero
     * `abnormal-exit` - Process exited with a non-zero exit code
@@ -342,10 +344,10 @@ Emitted when the renderer process unexpectedly disappears.  This is normally bec
 
 ### Event: 'child-process-gone'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `details` Object
+* `details` Objekt
   * `Typ` String - Prozess-Typ. Einer der folgenden Werte:
     * `Utility`
     * `Zygote`
@@ -370,7 +372,7 @@ Emitted when the child process unexpectedly disappears. This is normally because
 
 ### Event: 'accessibility-support-changed' _macOS_ _Windows_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `accessibilitySupportEnabled` Boolean - `true` when Chrome's accessibility support is enabled, `false` otherwise.
@@ -379,7 +381,7 @@ Emitted when Chrome's accessibility support changes. This event fires when assis
 
 ### Event: 'session-created'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `session` [Session](session.md)
 
@@ -395,7 +397,7 @@ app.on('session-created', (session) => {
 
 ### Event: 'second-instance'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `argv` String[] - An array of the second instance's command line arguments
@@ -413,7 +415,7 @@ This event is guaranteed to be emitted after the `ready` event of `app` gets emi
 
 ### Event: 'desktop-capturer-get-sources'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -422,7 +424,7 @@ Emitted when `desktopCapturer.getSources()` is called in the renderer process of
 
 ### Event: 'remote-require' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -432,7 +434,7 @@ Emitted when `remote.require()` is called in the renderer process of `webContent
 
 ### Event: 'remote-get-global' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -442,7 +444,7 @@ Emitted when `remote.getGlobal()` is called in the renderer process of `webConte
 
 ### Event: 'remote-get-builtin' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -452,7 +454,7 @@ Emitted when `remote.getBuiltin()` is called in the renderer process of `webCont
 
 ### Event: 'remote-get-current-window' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -461,7 +463,7 @@ Emitted when `remote.getCurrentWindow()` is called in the renderer process of `w
 
 ### Event: 'remote-get-current-web-contents' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
@@ -557,7 +559,7 @@ Returns `String` - The current application directory.
     * `$XDG_CONFIG_HOME` oder `~/.config` in Linux
     * `~/Library/Application Support` in macOS
   * `userData` The directory for storing your app's configuration files, which by default it is the `appData` directory appended with your app's name.
-  * `cache`
+  * `Cache`
   * `temp` Temporäres Verzeichnis.
   * `exe` Die aktuell ausführbare Datei.
   * `module` Die `libchromiumcontent` Bibliothek.
@@ -597,7 +599,7 @@ On _Linux_ and _macOS_, icons depend on the application associated with file mim
 
 ### `app.setPath(name, path)`
 
-* `name` String
+* `name` Zeichenfolge
 * `path` String
 
 Overrides the `path` to a special directory or file associated with `name`. If the path specifies a directory that does not exist, an `Error` is thrown. In that case, the directory should be created with `fs.mkdirSync` or similar.
@@ -618,7 +620,7 @@ Usually the `name` field of `package.json` is a short lowercase name, according 
 
 ### `app.setName(name)`
 
-* `name` String
+* `name` Zeichenfolge
 
 Überschreibt den Namen der aktuellen Anwendung.
 
@@ -626,7 +628,7 @@ Usually the `name` field of `package.json` is a short lowercase name, according 
 
 ### `app.getLocale()`
 
-Returns `String` - The current application locale. Possible return values are documented [here](locales.md).
+Returns `String` - The current application locale, fetched using Chromium's `l10n_util` library. Possible return values are documented [here](https://source.chromium.org/chromium/chromium/src/+/master:ui/base/l10n/l10n_util.cc).
 
 To set the locale, you'll want to use a command line switch at app startup, which may be found [here](https://github.com/electron/electron/blob/master/docs/api/command-line-switches.md).
 
@@ -655,7 +657,7 @@ Leere die zuletzt verwendete Dokumenten Liste.
 ### `app.setAsDefaultProtocolClient(protocol[, path, args])`
 
 * `protocol` String - The name of your protocol, without `://`. For example, if you want your app to handle `electron://` links, call this method with `electron` as the parameter.
-* `path` String (optional) _Windows_ - The path to the Electron executable. Defaults to `process.execPath`
+* `path` String (optional) _Windows_ - The path to the Electron executable. Standardwert ist `process.execPath`
 * `args` String[] (optional) _Windows_ - Arguments passed to the executable. Defaults to an empty array
 
 Returns `Boolean` - Whether the call succeeded.
@@ -747,6 +749,8 @@ If `categories` is `null` the previously set custom Jump List (if any) will be r
 
 **Note:** Users can remove items from custom categories, and Windows will not allow a removed item to be added back into a custom category until **after** the next successful call to `app.setJumpList(categories)`. Any attempt to re-add a removed item to a custom category earlier than that will result in the entire custom category being omitted from the Jump List. The list of removed items can be obtained using `app.getJumpListSettings()`.
 
+**Note:** The maximum length of a Jump List item's `description` property is 260 characters. Beyond this limit, the item will not be added to the Jump List, nor will it be displayed.
+
 Hier ist ein einfaches Beispiel, wie man eine eigene Jump List anlegt:
 
 ```javascript
@@ -829,7 +833,7 @@ if (!gotTheLock) {
   app.quit()
 } else {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
-    // Someone tried to run a second instance, we should focus our window.{app}.
+    // Someone tried to run a second instance, we should focus our window.
     if (myWindow) {
       if (myWindow.isMinimized()) myWindow.restore()
       myWindow.focus()
@@ -882,7 +886,7 @@ Updates the current activity if its type matches `type`, merging the entries fro
 
 ### `app.setAppUserModelId(id)` _Windows_
 
-* `id` String
+* `id` Zeichenfolge
 
 Changes the [Application User Model ID][app-user-model-id] to `id`.
 
@@ -900,7 +904,7 @@ Activation policy types:
 
 ### `app.importCertificate(options, callback)` _Linux_
 
-* `options` Object
+* `options` Objekt
   * `certificate` String - Pfad zur pkcs12 Datei.
   * `password` String - Passphrase des Zertifikats.
 * `callback` Function
@@ -932,9 +936,9 @@ Returns [`GPUFeatureStatus`](structures/gpu-feature-status.md) - The Graphics Fe
 
 ### `app.getGPUInfo(infoType)`
 
-* `infoType` String - Can be `basic` or `complete`.
+* `infoType` String - Kann `basic` oder `complete` sein.
 
-Returns `Promise<unknown>`
+Gibt das `Promise<unknown>` zurück
 
 For `infoType` equal to `complete`: Promise is fulfilled with `Object` containing all the GPU Information as in [chromium's GPUInfo object](https://chromium.googlesource.com/chromium/src/+/4178e190e9da409b055e5dff469911ec6f6b716f/gpu/config/gpu_info.cc). This includes the version and driver information that's shown on `chrome://gpu` page.
 
@@ -1059,7 +1063,7 @@ Show the app's about panel options. These options can be overridden with `app.se
 
 ### `app.setAboutPanelOptions(options)`
 
-* `options` Object
+* `options` Objekt
   * `applicationName` String (optional) - Der Name der App.
   * `applicationVersion` String (optional) - Die Version der App.
   * `copyright` String (optional) - Copyright Information.

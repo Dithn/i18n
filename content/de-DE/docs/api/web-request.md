@@ -2,7 +2,7 @@
 
 > Intercept and modify the contents of a request at various stages of its lifetime.
 
-Prozess: [Main](../glossary.md#main-process)
+Prozess: [Haupt](../glossary.md#main-process)
 
 Instances of the `WebRequest` class are accessed by using the `webRequest` property of a `Session`.
 
@@ -30,7 +30,7 @@ session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback
 }){ requestHeaders: details.requestHeaders }
 ```
 
-### Instanz Methoden
+### Beispiel Methoden
 
 Die folgenden Methoden sind verfügbar in Instanzen von `WebRequest`:
 
@@ -39,10 +39,10 @@ Die folgenden Methoden sind verfügbar in Instanzen von `WebRequest`:
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -81,10 +81,10 @@ Some examples of valid `urls`:
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -106,10 +106,10 @@ The `callback` has to be called with a `response` object.
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -125,10 +125,10 @@ The `listener` will be called with `listener(details)` just before a request is 
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -137,7 +137,6 @@ The `listener` will be called with `listener(details)` just before a request is 
     * `timestamp` Double
     * `statusLine` String
     * `statusCode` Integer
-    * `requestHeaders` Record<string, string>
     * `responseHeaders` Record<string, string[]> (optional)
   * `callback` Function
     * `headersReceivedResponse` Object
@@ -154,10 +153,10 @@ The `callback` has to be called with a `response` object.
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -176,10 +175,10 @@ The `listener` will be called with `listener(details)` when first byte of the re
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -200,10 +199,10 @@ The `listener` will be called with `listener(details)` when a server initiated r
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)
@@ -223,10 +222,10 @@ The `listener` will be called with `listener(details)` when a request is complet
 * `filter` Object (optional)
   * `urls` String[] - Array mit URL Patterns welche requests herausfiltern die nicht dem URL Pattern entsprechen.
 * `listener` Function | null
-  * `details` Object
+  * `details` Objekt
     * `id` Integer
-    * `url` String
-    * `method` String
+    * ` URL </ 0>  Zeichenfolge</li>
+<li><code>method` String
     * `webContentsId` Integer (optional)
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain (optional)

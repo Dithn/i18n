@@ -2,9 +2,9 @@
 
 > Rendert und steuert web pages.
 
-Prozess: [Main](../glossary.md#main-process)
+Prozess: [Haupt](../glossary.md#main-process)
 
-`webContents` is an [EventEmitter][event-emitter]. Ist zuständig für das rendering und die Steuerung einer web page und ist eine Property des [`BrowserWindow`](browser-window.md) Objekts. Ein Beispiel für die Verwendung des `webContents` Objekts:
+`webContents` ist ein [EventEmitter][event-emitter]. Ist zuständig für das rendering und die Steuerung einer web page und ist eine Property des [`BrowserWindow`](browser-window.md) Objekts. Ein Beispiel für die Verwendung des `webContents` Objekts:
 
 ```javascript
 const { BrowserWindow } = require('electron')
@@ -43,9 +43,9 @@ Returns `WebContents` | undefined - A WebContents instance with the given ID, or
 
 > Rendert und steuert den Inhalt einer BrowserWindow Instanze.
 
-Prozess: [Main](../glossary.md#main-process)
+Prozess: [Haupt](../glossary.md#main-process)
 
-### Instanz Events
+### Instanz-Ereignisse
 
 #### Event: 'did-finish-load'
 
@@ -53,7 +53,7 @@ Emittiert wenn die Navigation abgeschlossen ist, daher, wenn der Spinner des Tab
 
 #### Event: 'did-fail-load'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `errorCode` Integer
@@ -67,7 +67,7 @@ This event is like `did-finish-load` but emitted when the load failed. The full 
 
 #### Event: 'did-fail-provisional-load'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `errorCode` Integer
@@ -81,7 +81,7 @@ This event is like `did-fail-load` but emitted when the load was cancelled (e.g.
 
 #### Event: 'did-frame-finish-load'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `isMainFrame` Boolean
@@ -100,7 +100,7 @@ Corresponds to the points in time when the spinner of the tab stopped spinning.
 
 #### Event: 'dom-ready'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -108,7 +108,7 @@ Emitted when the document in the given frame is loaded.
 
 #### Event: 'page-title-updated'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `title` String
@@ -118,7 +118,7 @@ Fired when page title is set during navigation. `explicitSet` is false when titl
 
 #### Event: 'page-favicon-updated'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `favicons` String[] - Array mit URLs.
@@ -127,11 +127,11 @@ Emitted when page receives favicon urls.
 
 #### Event: 'new-window' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` NewWindowWebContentsEvent
-* `url` String
-* `frameName` String
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>frameName` String
 * `disposition` String - Can be `default`, `foreground-tab`, `background-tab`, `new-window`, `save-to-disk` and `other`.
 * `options` BrowserWindowConstructorOptions - The options which will be used for creating the new [`BrowserWindow`](browser-window.md).
 * `additionalFeatures` String[] - The non-standard features (features not handled by Chromium or Electron) given to `window.open()`.
@@ -172,16 +172,17 @@ myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition
 
 #### Event: 'did-create-window'
 
-Rückgabewert:
+Kehrt zurück:
+
 * `window` BrowserWindow
-* `details` Object
-    * `url` String - URL for the created window.
-    * `frameName` String - Name given to the created window in the `window.open()` call.
-    * `options` BrowserWindowConstructorOptions - The options used to create the BrowserWindow. They are merged in increasing precedence: options inherited from the parent, parsed options from the `features` string from `window.open()`, and options given by [`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler). Unrecognized options are not filtered out.
-    * `additionalFeatures` String[] - The non-standard features (features not handled Chromium or Electron) _Deprecated_
-    * `referrer` [Referrer](structures/referrer.md) - The referrer that will be passed to the new window. May or may not result in the `Referer` header being sent, depending on the referrer policy.
-    * `postBody` [PostBody](structures/post-body.md) (optional) - The post data that will be sent to the new window, along with the appropriate headers that will be set. If no post data is to be sent, the value will be `null`. Only defined when the window is being created by a form that set `target=_blank`.
-    * `disposition` String - Can be `default`, `foreground-tab`, `background-tab`, `new-window`, `save-to-disk` and `other`.
+* `details` Objekt
+  * `url` String - URL for the created window.
+  * `frameName` String - Name given to the created window in the `window.open()` call.
+  * `options` BrowserWindowConstructorOptions - The options used to create the BrowserWindow. They are merged in increasing precedence: options inherited from the parent, parsed options from the `features` string from `window.open()`, and options given by [`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler). Unrecognized options are not filtered out.
+  * `additionalFeatures` String[] - The non-standard features (features not handled Chromium or Electron) _Deprecated_
+  * `referrer` [Referrer](structures/referrer.md) - The referrer that will be passed to the new window. May or may not result in the `Referer` header being sent, depending on the referrer policy.
+  * `postBody` [PostBody](structures/post-body.md) (optional) - The post data that will be sent to the new window, along with the appropriate headers that will be set. If no post data is to be sent, the value will be `null`. Only defined when the window is being created by a form that set `target=_blank`.
+  * `disposition` String - Can be `default`, `foreground-tab`, `background-tab`, `new-window`, `save-to-disk` and `other`.
 
 Emitted _after_ successful creation of a window via `window.open` in the renderer. Not emitted if the creation of the window is canceled from [`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler).
 
@@ -189,12 +190,14 @@ See [`window.open()`](window-open.md) for more details and how to use this in co
 
 #### Event: 'will-navigate'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when a user or the page wants to start navigation. It can happen when the `window.location` object is changed or a user clicks a link in the page.
+<p spaces-before="0">Emitted when a user or the page wants to start navigation. It can happen when
+the <code>window.location` object is changed or a user clicks a link in the page.</p>
 
 This event will not emit when the navigation is started programmatically with APIs like `webContents.loadURL` and `webContents.back`.
 
@@ -204,11 +207,11 @@ Calling `event.preventDefault()` will prevent the navigation.
 
 #### Event: 'did-start-navigation'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `isInPlace` Boolean
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>isInPlace` Boolean
 * `isMainFrame` Boolean
 * `frameProcessId` Integer
 * `frameRoutingId` Integer
@@ -217,11 +220,11 @@ Emitted when any frame (including main) starts navigating. `isInPlace` will be `
 
 #### Event: 'will-redirect'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `isInPlace` Boolean
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>isInPlace` Boolean
 * `isMainFrame` Boolean
 * `frameProcessId` Integer
 * `frameRoutingId` Integer
@@ -234,11 +237,11 @@ Calling `event.preventDefault()` will prevent the navigation (not just the redir
 
 #### Event: 'did-redirect-navigation'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `isInPlace` Boolean
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>isInPlace` Boolean
 * `isMainFrame` Boolean
 * `frameProcessId` Integer
 * `frameRoutingId` Integer
@@ -249,11 +252,11 @@ This event cannot be prevented, if you want to prevent redirects you should chec
 
 #### Event: 'did-navigate'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `httpResponseCode` Integer - -1 for non HTTP navigations
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>httpResponseCode` Integer - -1 for non HTTP navigations
 * `httpStatusText` String - empty for non HTTP navigations
 
 Emitted when a main frame navigation is done.
@@ -262,11 +265,11 @@ This event is not emitted for in-page navigations, such as clicking anchor links
 
 #### Event: 'did-frame-navigate'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `httpResponseCode` Integer - -1 for non HTTP navigations
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>httpResponseCode` Integer - -1 for non HTTP navigations
 * `httpStatusText` String - empty for non HTTP navigations,
 * `isMainFrame` Boolean
 * `frameProcessId` Integer
@@ -278,11 +281,11 @@ This event is not emitted for in-page navigations, such as clicking anchor links
 
 #### Event: 'did-navigate-in-page'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `isMainFrame` Boolean
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>isMainFrame` Boolean
 * `frameProcessId` Integer
 * `frameRoutingId` Integer
 
@@ -292,7 +295,7 @@ When in-page navigation happens, the page URL changes but does not cause navigat
 
 #### Event: 'will-prevent-unload'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -321,7 +324,7 @@ win.webContents.on('will-prevent-unload', (event) => {
 
 #### Event: 'crashed' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `killed` Boolean
@@ -332,10 +335,10 @@ Emitted when the renderer process crashes or is killed.
 
 #### Event: 'render-process-gone'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `details` Object
+* `details` Objekt
   * `reason` String - The reason the render process is gone.  Mögliche werte:
     * `clean-exit` - Process exited with an exit code of zero
     * `abnormal-exit` - Process exited with a non-zero exit code
@@ -358,10 +361,10 @@ Ausgegeben wenn eine Webseite, die zuvor nicht mehr antwortete, wieder antwortet
 
 #### Event: 'plugin-crashed'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `name` String
+* `name` Zeichenfolge
 * `version` String
 
 Emitted when a plugin process has crashed.
@@ -372,19 +375,19 @@ Emitted when `webContents` is destroyed.
 
 #### Event: 'before-input-event'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `input` Object - Input properties.
   * `type` String - Entweder `keyUp` oder `keyDown`.
-  * `key` String - Equivalent zu [KeyboardEvent.key][keyboardevent].
-  * `code` String - Equivalent zu [KeyboardEvent.code][keyboardevent].
-  * `isAutoRepeat` Boolean - Equivalent zu [KeyboardEvent.repeat][keyboardevent].
+  * `key` String - Equivalent to [KeyboardEvent.key][keyboardevent].
+  * `code` String - Equivalent to [KeyboardEvent.code][keyboardevent].
+  * `isAutoRepeat` Boolean - Equivalent to [KeyboardEvent.repeat][keyboardevent].
   * `isComposing` Boolean - Equivalent to [KeyboardEvent.isComposing][keyboardevent].
-  * `shift` Boolean - Equivalent zu [KeyboardEvent.shiftKey][keyboardevent].
-  * `control` Boolean - Equivalent zu [KeyboardEvent.controlKey][keyboardevent].
-  * `alt` Boolean - Equivalent zu [KeyboardEvent.altKey][keyboardevent].
-  * `meta` Boolean - Equivalent zu [KeyboardEvent.metaKey][keyboardevent].
+  * `shift` Boolean - Equivalent to [KeyboardEvent.shiftKey][keyboardevent].
+  * `control` Boolean - Equivalent to [KeyboardEvent.controlKey][keyboardevent].
+  * `alt` Boolean - Equivalent to [KeyboardEvent.altKey][keyboardevent].
+  * `meta` Boolean - Equivalent to [KeyboardEvent.metaKey][keyboardevent].
 
 Emitted before dispatching the `keydown` and `keyup` events in the page. Calling `event.preventDefault` will prevent the page `keydown`/`keyup` events and the menu shortcuts.
 
@@ -412,7 +415,7 @@ Emitted when the window leaves a full-screen state triggered by HTML API.
 
 #### Event: 'zoom-changed'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `zoomDirection` String - Can be `in` or `out`.
@@ -433,11 +436,11 @@ Emitted when DevTools is focused / opened.
 
 #### Event: 'certificate-error'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
-* `error` String - Der error code.
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>error` String - Der error code.
 * `certificate` [Certificate](structures/certificate.md)
 * `callback` Function
   * `isTrusted` Boolean - Indicates whether the certificate can be considered trusted.
@@ -448,7 +451,7 @@ The usage is the same with [the `certificate-error` event of `app`](app.md#event
 
 #### Event: 'select-client-certificate'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `url` URL
@@ -462,12 +465,12 @@ The usage is the same with [the `select-client-certificate` event of `app`](app.
 
 #### Event: 'login'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `authenticationResponseDetails` Object
+* `authenticationResponseDetails` Objekt
   * `url` URL
-* `authInfo` Object
+* `authInfo` Objekt
   * `isProxy` Boolean
   * `scheme` String
   * `host` String
@@ -483,7 +486,7 @@ The usage is the same with [the `login` event of `app`](app.md#event-login).
 
 #### Event: 'found-in-page'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `result` Object
@@ -505,7 +508,7 @@ Emitted when media is paused or done playing.
 
 #### Event: 'did-change-theme-color'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `color` (String | null) - Theme color is in format of '#rrggbb'. It is `null` when no theme color is set.
@@ -518,18 +521,20 @@ Emitted when a page's theme color changes. This is usually due to encountering a
 
 #### Event: 'update-target-url'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when mouse moves over a link or the keyboard moves the focus to a link.
+<p spaces-before="0">Emitted when mouse moves over a link or the keyboard moves the focus to a link.</p>
 
-#### Event: 'cursor-changed'
+<h4 spaces-before="0">Event: 'cursor-changed'</h4>
 
-Rückgabewert:
+<p spaces-before="0">Kehrt zurück:</p>
 
-* `event` Event
+<ul>
+<li><code>event` Event
 * `type` String
 * `image` [NativeImage](native-image.md) (optional)
 * `scale` Float (optional) - scaling factor for the custom cursor.
@@ -542,7 +547,7 @@ If the `type` parameter is `custom`, the `image` parameter will hold the custom 
 
 #### Event: 'context-menu'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `params` Object
@@ -557,12 +562,18 @@ Rückgabewert:
   * `hasImageContents` Boolean - Whether the context menu was invoked on an image which has non-empty contents.
   * `isEditable` Boolean - Whether the context is editable.
   * `selectionText` String - Text of the selection that the context menu was invoked on.
-  * `titleText` String - Title or alt text of the selection that the context was invoked on.
+  * `titleText` String - Title text of the selection that the context menu was invoked on.
+  * `altText` String - Alt text of the selection that the context menu was invoked on.
+  * `suggestedFilename` String - Suggested filename to be used when saving file through 'Save Link As' option of context menu.
+  * `selectionRect` [Rectangle](structures/rectangle.md) - Rect representing the coordinates in the document space of the selection.
+  * `selectionStartOffset` Number - Start position of the selection text.
+  * `referrerPolicy` [Referrer](structures/referrer.md) - The referrer policy of the frame on which the menu is invoked.
   * `misspelledWord` String - The misspelled word under the cursor, if any.
   * `dictionarySuggestions` String[] - An array of suggested words to show the user to replace the `misspelledWord`.  Only available if there is a misspelled word and spellchecker is enabled.
   * `frameCharset` String - The character encoding of the frame on which the menu was invoked.
   * `inputFieldType` String - If the context menu was invoked on an input field, the type of that field. Possible values are `none`, `plainText`, `password`, `other`.
-  * `menuSourceType` String - Input source that invoked the context menu. Can be `none`, `mouse`, `keyboard`, `touch` or `touchMenu`.
+  * `spellcheckEnabled` Boolean - If the context is editable, whether or not spellchecking is enabled.
+  * `menuSourceType` String - Input source that invoked the context menu. Can be `none`, `mouse`, `keyboard`, `touch`, `touchMenu`, `longPress`, `longTap`, `touchHandle`, `stylus`, `adjustSelection`, or `adjustSelectionReset`.
   * `mediaFlags` Object - The flags for the media element the context menu was invoked on.
     * `inError` Boolean - Whether the media element has crashed.
     * `isPaused` Boolean - Whether the media element is paused.
@@ -571,21 +582,27 @@ Rückgabewert:
     * `isLooping` Boolean - Whether the media element is looping.
     * `isControlsVisible` Boolean - Whether the media element's controls are visible.
     * `canToggleControls` Boolean - Whether the media element's controls are toggleable.
+    * `canPrint` Boolean - Whether the media element can be printed.
+    * `canSave` Boolean - Whether or not the media element can be downloaded.
+    * `canShowPictureInPicture` Boolean - Whether the media element can show picture-in-picture.
+    * `isShowingPictureInPicture` Boolean - Whether the media element is currently showing picture-in-picture.
     * `canRotate` Boolean - Whether the media element can be rotated.
+    * `canLoop` Boolean - Whether the media element can be looped.
   * `editFlags` Object - These flags indicate whether the renderer believes it is able to perform the corresponding action.
     * `canUndo` Boolean - Whether the renderer believes it can undo.
     * `canRedo` Boolean - Whether the renderer believes it can redo.
     * `canCut` Boolean - Whether the renderer believes it can cut.
-    * `canCopy` Boolean - Whether the renderer believes it can copy
+    * `canCopy` Boolean - Whether the renderer believes it can copy.
     * `canPaste` Boolean - Whether the renderer believes it can paste.
     * `canDelete` Boolean - Whether the renderer believes it can delete.
     * `canSelectAll` Boolean - Whether the renderer believes it can select all.
+    * `canEditRichly` Boolean - Whether the renderer believes it can edit text richly.
 
 Emitted when there is a new context menu that needs to be handled.
 
 #### Event: 'select-bluetooth-device'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `devices` [BluetoothDevice[]](structures/bluetooth-device.md)
@@ -618,7 +635,7 @@ app.whenReady().then(() => {
 
 #### Event: 'paint'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `dirtyRect` [Rectangle](structures/rectangle.md)
@@ -642,7 +659,7 @@ Emitted when the devtools window instructs the webContents to reload
 
 #### Event: 'will-attach-webview'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webPreferences` WebPreferences - The web preferences that will be used by the guest page. This object can be modified to adjust the preferences for the guest page.
@@ -656,7 +673,7 @@ This event can be used to configure `webPreferences` for the `webContents` of a 
 
 #### Event: 'did-attach-webview'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `webContents` WebContents - The guest web contents that is used by the `<webview>`.
@@ -665,7 +682,7 @@ Emitted when a `<webview>` has been attached to this web contents.
 
 #### Event: 'console-message'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `level` Integer - The log level, from 0 to 3. In order it matches `verbose`, `info`, `warning` and `error`.
@@ -677,7 +694,7 @@ Emitted when the associated window logs a console message.
 
 #### Event: 'preload-error'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `preloadPath` String
@@ -688,7 +705,7 @@ Rückgabewert:
 
 #### Event: 'ipc-message'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `channel` String
@@ -698,7 +715,7 @@ Emitted when the renderer process sends an asynchronous message via `ipcRenderer
 
 #### Event: 'ipc-message-sync'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `channel` String
@@ -708,7 +725,7 @@ Emitted when the renderer process sends a synchronous message via `ipcRenderer.s
 
 #### Event: 'desktop-capturer-get-sources'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 
@@ -716,7 +733,7 @@ Emitted when `desktopCapturer.getSources()` is called in the renderer process. C
 
 #### Event: 'remote-require' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` IpcMainEvent
 * `moduleName` String
@@ -725,7 +742,7 @@ Emitted when `remote.require()` is called in the renderer process. Calling `even
 
 #### Event: 'remote-get-global' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` IpcMainEvent
 * `globalName` String
@@ -734,7 +751,7 @@ Emitted when `remote.getGlobal()` is called in the renderer process. Calling `ev
 
 #### Event: 'remote-get-builtin' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` IpcMainEvent
 * `moduleName` String
@@ -743,7 +760,7 @@ Emitted when `remote.getBuiltin()` is called in the renderer process. Calling `e
 
 #### Event: 'remote-get-current-window' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` IpcMainEvent
 
@@ -751,7 +768,7 @@ Emitted when `remote.getCurrentWindow()` is called in the renderer process. Call
 
 #### Event: 'remote-get-current-web-contents' _Deprecated_
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` IpcMainEvent
 
@@ -759,7 +776,7 @@ Emitted when `remote.getCurrentWebContents()` is called in the renderer process.
 
 #### Event: 'preferred-size-changed'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `event` Event
 * `preferredSize` [Size](structures/size.md) - The minimum size needed to contain the layout of the document—without requiring scrolling.
@@ -768,16 +785,16 @@ Emitted when the `WebContents` preferred size has changed.
 
 This event will only be emitted when `enablePreferredSizeMode` is set to `true` in `webPreferences`.
 
-### Instanz Methoden
+### Beispiel Methoden
 
 #### `contents.loadURL(url[, options])`
 
-* `url` String
-* `options` Object (optional)
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>options` Object (optional)
   * `httpReferrer` (String | [Referrer](structures/referrer.md)) (optional) - An HTTP Referrer url.
   * `userAgent` String (optional) - A user agent originating the request.
   * `extraHeaders` String (optional) - Extra headers separated by "\n".
-  * `postData` ([UploadRawData[]](structures/upload-raw-data.md) | [UploadFile[]](structures/upload-file.md)) (optional)
+  * `postData` ([UploadRawData](structures/upload-raw-data.md) | [UploadFile](structures/upload-file.md))[] (optional)
   * `baseURLForDataURL` String (optional) - Base url (with trailing path separator) for files to be loaded by the data url. This is needed only if the specified `url` is a data url and needs to load other files.
 
 Returns `Promise<void>` - the promise will resolve when the page has finished loading (see [`did-finish-load`](web-contents.md#event-did-finish-load)), and rejects if the page fails to load (see [`did-fail-load`](web-contents.md#event-did-fail-load)). A noop rejection handler is already attached, which avoids unhandled rejection errors.
@@ -818,9 +835,10 @@ win.loadFile('src/index.html')
 
 #### `contents.downloadURL(url)`
 
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Initiates a download of the resource at `url` without navigating. The `will-download` event of `session` will be triggered.
+<p spaces-before="0">Initiates a download of the resource at <code>url` without navigating. The `will-download` event of `session` will be triggered.</p>
 
 #### `contents.getURL()`
 
@@ -981,7 +999,7 @@ contents.on('did-finish-load', async () => {
 
 #### `contents.executeJavaScript(code[, userGesture])`
 
-* `code` String
+* `code` Zeichenkette
 * `userGesture` Boolean (optional) - Default is `false`.
 
 Returns `Promise<any>` - A promise that resolves with the result of the executed code or is rejected if the result of the code is a rejected promise.
@@ -1017,11 +1035,16 @@ Ignore application menu shortcuts while this web contents is focused.
 
 #### `contents.setWindowOpenHandler(handler)`
 
-* `handler` Function<{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}>
-  * `details` Object
+* `handler` Funktion<{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}>
+  * `details` Objekt
     * `url` String - The _resolved_ version of the URL passed to `window.open()`. e.g. opening a window with `window.open('foo')` will yield something like `https://the-origin/the/current/path/foo`.
     * `frameName` String - Name of the window provided in `window.open()`
-    * `features` String - Comma separated list of window features provided to `window.open()`. Returns `{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}` - `deny` cancels the creation of the new window. `allow` will allow the new window to be created. Specifying `overrideBrowserWindowOptions` allows customization of the created window. Returning an unrecognized value such as a null, undefined, or an object without a recognized 'action' value will result in a console error and have the same effect as returning `{action: 'deny'}`.
+    * `features` String - Comma separated list of window features provided to `window.open()`.
+    * `disposition` String - Can be `default`, `foreground-tab`, `background-tab`, `new-window`, `save-to-disk` or `other`.
+    * `referrer` [Referrer](structures/referrer.md) - The referrer that will be passed to the new window. May or may not result in the `Referer` header being sent, depending on the referrer policy.
+    * `postBody` [PostBody](structures/post-body.md) (optional) - The post data that will be sent to the new window, along with the appropriate headers that will be set. If no post data is to be sent, the value will be `null`. Only defined when the window is being created by a form that set `target=_blank`.
+
+  Returns `{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}` - `deny` cancels the creation of the new window. `allow` will allow the new window to be created. Specifying `overrideBrowserWindowOptions` allows customization of the created window. Returning an unrecognized value such as a null, undefined, or an object without a recognized 'action' value will result in a console error and have the same effect as returning `{action: 'deny'}`.
 
 Called before creating a window when `window.open()` is called from the renderer. See [`window.open()`](window-open.md) for more details and how to use this in conjunction with `did-create-window`.
 
@@ -1068,7 +1091,7 @@ Returns `Number` - the current zoom level.
 * `minimumLevel` Number
 * `maximumLevel` Number
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Setzt das Maximum und Minimum pinch-to-zoom Level.
 
@@ -1137,7 +1160,7 @@ Executes the editing command `replaceMisspelling` in web page.
 
 * `text` String
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Füge `text` in das fokusierte Element ein.
 
@@ -1146,7 +1169,7 @@ Füge `text` in das fokusierte Element ein.
 * `text` String - Content to be searched, must not be empty.
 * `options` Object (optional)
   * `forward` Boolean (optional) - Whether to search forward or backward, defaults to `true`.
-  * `findNext` Boolean (optional) - Whether the operation is first request or a follow up, defaults to `false`.
+  * `findNext` Boolean (optional) - Whether to begin a new text finding session with this request. Should be `true` for initial requests, and `false` for follow-up requests. Defaults to `false`.
   * `matchCase` Boolean (optional) - Whether search should be case-sensitive, defaults to `false`.
 
 Returns `Integer` - The request id used for the request.
@@ -1184,18 +1207,20 @@ Captures a snapshot of the page within `rect`. Omitting `rect` will capture the 
 
 Returns `Boolean` - Whether this page is being captured. It returns true when the capturer count is large then 0.
 
-#### `contents.incrementCapturerCount([size, stayHidden])`
+#### `contents.incrementCapturerCount([size, stayHidden, stayAwake])`
 
 * `size` [Size](structures/size.md) (optional) - The preferred size for the capturer.
 * `stayHidden` Boolean (optional) -  Keep the page hidden instead of visible.
+* `stayAwake` Boolean (optional) -  Keep the system awake instead of allowing it to sleep.
 
 Increase the capturer count by one. The page is considered visible when its browser window is hidden and the capturer count is non-zero. If you would like the page to stay hidden, you should ensure that `stayHidden` is set to true.
 
 This also affects the Page Visibility API.
 
-#### `contents.decrementCapturerCount([stayHidden])`
+#### `contents.decrementCapturerCount([stayHidden, stayAwake])`
 
 * `stayHidden` Boolean (optional) -  Keep the page in hidden state instead of visible.
+* `stayAwake` Boolean (optional) -  Keep the system awake instead of allowing it to sleep.
 
 Decrease the capturer count by one. The page will be set to hidden or occluded state when its browser window is hidden or occluded and the capturer count reaches zero. If you want to decrease the hidden capturer count instead you should set `stayHidden` to true.
 
@@ -1261,7 +1286,7 @@ win.webContents.print(options, (success, errorType) => {
 
 #### `contents.printToPDF(options)`
 
-* `options` Object
+* `options` Objekt
   * `headerFooter` Record<string, string> (optional) - the header and footer for the PDF.
     * `title` String - The title for the PDF header.
     * `url` String - the url for the PDF footer.
@@ -1559,7 +1584,7 @@ ipcRenderer.on('port', (e, msg) => {
 
 #### `contents.enableDeviceEmulation(parameters)`
 
-* `parameters` Object
+* `parameters` Objekt
   * `screenPosition` String - Specify the screen type to emulate (default: `desktop`):
     * `desktop` - Desktop screen type.
     * `mobile` - Mobile screen type.
@@ -1600,7 +1625,7 @@ End subscribing for frame presentation events.
 
 #### `contents.startDrag(item)`
 
-* `item` Object
+* `item` Objekt
   * `file` String[] | String - The path(s) to the file(s) being dragged.
   * `icon` [NativeImage](native-image.md) | String - The image must be non-empty on macOS.
 

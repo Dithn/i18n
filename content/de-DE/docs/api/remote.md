@@ -24,8 +24,8 @@ win.loadURL('https://github.com')
 
 **Note:** The remote module can be disabled for security reasons in the following contexts:
 
-- [`BrowserWindow`](browser-window.md) - by setting the `enableRemoteModule` option to `false`.
-- [`<webview>`](webview-tag.md) - by setting the `enableremotemodule` attribute to `false`.
+* [`BrowserWindow`](browser-window.md) - by setting the `enableRemoteModule` option to `false`.
+* [`<webview>`](webview-tag.md) - by setting the `enableremotemodule` attribute to `false`.
 
 ## Remote Objects
 
@@ -117,7 +117,7 @@ Returns [`WebContents`](web-contents.md) - The web contents of this web page.
 
 ### `remote.getGlobal(name)`
 
-* `name` String
+* `name` Zeichenfolge
 
 Returns `any` - The global variable of `name` (e.g. `global[name]`) in the main process.
 

@@ -26,7 +26,7 @@ Windows 控制台示例:
 
 Electron 包括对 Node 的 [`NODE_OPTIONS`](https://nodejs.org/api/cli.html#cli_node_options_options) 的子集的支持。 除与 Chromium 使用 BoringSSL 相抵触的情况外，大多数都得到了支持。
 
-示例:
+示例：
 
 ```sh
 export NODE_OPTIONS="--no-warnings --max-old-space-size=2048"
@@ -89,9 +89,9 @@ These flags are disabled owing to the fact that Electron uses BoringSSL instead 
 
 ### `ELECTRON_TRASH` _Linux_
 
-Set the trash implementation on Linux. Default is `gio`.
+Set the trash implementation on Linux. 默认值为 `gio`.
 
-Options:
+选项:
 
 * `gvfs-trash`
 * `trash-cli`
@@ -105,6 +105,23 @@ Options:
 ### `ELECTRON_ENABLE_LOGGING`
 
 将 Chrome 的内部日志打印到控制台。
+
+### `ELECTRON_DEBUG_DRAG_REGIONS`
+
+Adds coloration to draggable regions on [`BrowserView`](./browser-view.md)s on macOS - draggable regions will be colored green and non-draggable regions will be colored red to aid debugging.
+
+### `ELECTRON_DEBUG_NOTIFICATIONS`
+
+Adds extra logs to [`Notification`](./notification.md) lifecycles on macOS to aid in debugging. Extra logging will be displayed when new Notifications are created or activated. They will also be displayed when common actions are taken: a notification is shown, dismissed, its button is clicked, or it is replied to.
+
+Sample output:
+
+```sh
+Notification created (com.github.Electron:notification:EAF7B87C-A113-43D7-8E76-F88EC9D73D44)
+Notification displayed (com.github.Electron:notification:EAF7B87C-A113-43D7-8E76-F88EC9D73D44)
+Notification activated (com.github.Electron:notification:EAF7B87C-A113-43D7-8E76-F88EC9D73D44)
+Notification replied to (com.github.Electron:notification:EAF7B87C-A113-43D7-8E76-F88EC9D73D44)
+```
 
 ### `ELECTRON_LOG_ASAR_READS`
 
@@ -124,7 +141,7 @@ When Electron reads from an ASAR file, log the read offset and file path to the 
 
 ### `ELECTRON_OVERRIDE_DIST_PATH`
 
-当 `electron` 包运行时，该变量告知 `electron` 命令使用指定Electron的构建代替由 `npm install` 下载的构建。 用法:
+当 `electron` 包运行时，该变量告知 `electron` 命令使用指定Electron的构建代替由 `npm install` 下载的构建。 用法：
 
 ```sh
 export ELECTRON_OVERRIDE_DIST_PATH=/Users/username/projects/electron/out/Testing
@@ -136,4 +153,4 @@ Electron sets some variables in your environment at runtime.
 
 ### `ORIGINAL_XDG_CURRENT_DESKTOP`
 
-This variable is set to the value of `XDG_CURRENT_DESKTOP` that your application originally launched with.  Electron sometimes modifies the value of `XDG_CURRENT_DESKTOP` to affect other logic within Chromium so if you want access to the _original_ value you should look up this environment variable instead.
+This variable is set to the value of `XDG_CURRENT_DESKTOP` that your application originally launched with.  Electron 有时修改 `XDG_CURRENT_DESKTOP` 的值以影响Chromium 中的其他逻辑，所以如果您想访问 _原始的_ 值 您应该重新查看此环境变量。

@@ -1,9 +1,9 @@
-# Opening windows from the renderer
+# 从渲染进程打开窗口
 
-There are several ways to control how windows are created from trusted or untrusted content within a renderer. Windows can be created from the renderer in two ways:
+There are several ways to control how windows are created from trusted or untrusted content within a renderer. 可以通过两种方式从渲染进程创建窗口：
 
-- clicking on links or submitting forms adorned with `target=_blank`
-- JavaScript calling `window.open()`
+* clicking on links or submitting forms adorned with `target=_blank`
+* JavaScript calling `window.open()`
 
 In non-sandboxed renderers, or when `nativeWindowOpen` is false (the default), this results in the creation of a [`BrowserWindowProxy`](browser-window-proxy.md), a light wrapper around `BrowserWindow`.
 
@@ -31,7 +31,7 @@ A subset of `WebPreferences` can be set directly, unnested, from the features st
 window.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
 ```
 
-**注意：**
+**说明：**
 
 * 如果在父窗口中禁用了 Node integration, 则在打开的 `window ` 中将始终被禁用。
 * 如果在父窗口中启用了上下文隔离, 则在打开的 ` window ` 中将始终被启用。
@@ -83,15 +83,18 @@ const mainWindow = new BrowserWindow({
 mainWindow.webContents.setWindowOpenHandler(({ url }) => {
   if (url === 'about:blank') {
     return {
-      frame: false,
-      fullscreenable: false,
-      backgroundColor: 'black',
-      webPreferences: {
-        preload: 'my-child-window-preload-script.js'
+      action: 'allow',
+      overrideBrowserWindowOptions: {
+        frame: false,
+        fullscreenable: false,
+        backgroundColor: 'black',
+        webPreferences: {
+          preload: 'my-child-window-preload-script.js'
+        }
       }
     }
   }
-  return false
+  return { action: 'deny' }
 })
 ```
 

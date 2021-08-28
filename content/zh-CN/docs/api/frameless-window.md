@@ -40,7 +40,7 @@ win.show()
 
 #### `customButtonsOnHover`
 
-使用自定义的关闭、缩小和全屏按钮，这些按钮会在划过窗口的左上角时显示。 The fullscreen button is not available due to restrictions of frameless windows as they interface with Apple's macOS window masks. 这些自定义的按钮能防止, 与发生于标准的窗口工具栏按钮处的鼠标事件相关的问题. This option is only applicable for frameless windows.
+使用自定义的关闭、缩小和全屏按钮，这些按钮会在划过窗口的左上角时显示。 由于无框窗口与苹果 macOS 窗口界面的限制，全屏按钮不可用。 这些自定义的按钮能防止, 与发生于标准的窗口工具栏按钮处的鼠标事件相关的问题. 这个选项只适用于无框窗口。
 
 ```javascript
 const { BrowserWindow } = require('electron')
@@ -63,7 +63,10 @@ win.show()
 * 你不能点击穿透透明区域。 我们将引入一个 API 来设置窗口形状以解决此问题, 请参阅 [ our issue ](https://github.com/electron/electron/issues/1335) 以了解详细信息。
 * 透明窗口不可调整大小。 在某些平台上，将 ` resizable ` 设置为 ` true ` 可能会使透明窗口停止工作。
 * `blur ` 筛选器仅适用于网页, 因此无法对位于透明窗口下方的内容应用模糊效果 (例如在用户系统上打开的其他应用程序) 。
-* 在 windows 操作系统上, 当 DWM 被禁用时, 透明窗口将无法工作。
+* 当打开开发者工具时，窗口将不透明。
+* 在 Windows 操作系统中，
+  * 当DWM禁用时，透明窗口将失效。
+  * 透明窗口不能通过Windows系统菜单或双击标题栏实现最大化。 其背后的原因可以看[这个pull request](https://github.com/electron/electron/pull/28207)。
 * 在 linux 上, 用户必须在命令行中设置 `--enable-transparent-visuals --disable-gpu ` 来禁用GPU, 启用 ARGB，用以实现窗体透明。 这是由一个上游的 bug 导致的, 即 [ 在Linux机上，透明度通道（alpha channel ）在一些英伟达的驱动（NVidia drivers）中无法运行](https://bugs.chromium.org/p/chromium/issues/detail?id=369209)。
 * 在 Mac 上, 透明窗口无法显示原生窗口的阴影。
 
@@ -121,7 +124,7 @@ button {
 }
 ```
 
-If you're only setting a custom titlebar as draggable, you also need to make all buttons in titlebar non-draggable.
+如果只将自定义标题栏设置为可拖拽，还需要使标题栏中的所有按钮都不可拖拽。
 
 ## 文本选择
 

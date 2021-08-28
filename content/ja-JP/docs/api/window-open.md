@@ -2,8 +2,8 @@
 
 レンダラー内での信頼されたもしくは信頼されていないコンテンツからのウインドウ作成を制御する方法がいくつかあります。 ウインドウはレンダラーから以下の 2 つの方法で作成できます。
 
-- `target=_blank` が付加された、リンクのクリックやフォームの送信
-- JavaScript での `window.open()` 呼び出し
+* `target=_blank` が付加された、リンクのクリックやフォームの送信
+* JavaScript での `window.open()` 呼び出し
 
 サンドボックス化されていないレンダラーや `nativeWindowOpen` が false (既定値) の場合、[`BrowserWindowProxy`](browser-window-proxy.md) という `BrowserWindow` の軽いラッパーが作成されます。
 
@@ -25,7 +25,7 @@ BrowserWindow コンストラクタのオプションは、親から継承した
 
 `WebPreferences` のうちのいくつかは、次の features 文字列から直接フラットに設定できます。`zoomFactor`、`nodeIntegration`、`preload`、`javascript`、`contextIsolation`、`webviewTag` が設定できます。
 
-例:
+以下がその例です。
 
 ```js
 window.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
@@ -78,25 +78,28 @@ const mainWindow = new BrowserWindow({
   }
 })
 
-// In this example, only windows with the `about:blank` url will be created.
-// All other urls will be blocked.
+// この例では、URL が `about:blank` であるウインドウのみが作成されます。
+// ほかのすべての URL はブロックされます。
 mainWindow.webContents.setWindowOpenHandler(({ url }) => {
   if (url === 'about:blank') {
     return {
-      frame: false,
-      fullscreenable: false,
-      backgroundColor: 'black',
-      webPreferences: {
-        preload: 'my-child-window-preload-script.js'
+      action: 'allow',
+      overrideBrowserWindowOptions: {
+        frame: false,
+        fullscreenable: false,
+        backgroundColor: 'black',
+        webPreferences: {
+          preload: 'my-child-window-preload-script.js'
+        }
       }
     }
   }
-  return false
+  return { action: 'deny' }
 })
 ```
 
 ```javascript
-// renderer process (mainWindow)
+// レンダラープロセス (mainWindow)
 const childWindow = window.open('', 'modal')
 childWindow.document.write('<h1>Hello</h1>')
 ```

@@ -70,7 +70,7 @@ main()
 * `code` String
 * `userGesture` Boolean (任意) - 省略値は `false`。
 
-戻り値 `Promise<unknown>` - 実行されたコードの結果で resolve されるか、実行でスロー又は reject された結果の場合に reject される Promise。
+戻り値 `Promise<unknown>` - Promise 型で、コードの実行結果で解決され、実行で例外の送出または実行結果が拒否された Promise の場合は拒否されます。
 
 ページ内の `code` を評価します。
 
@@ -99,7 +99,7 @@ main()
 
 転送された `MessagePortMain` オブジェクトは、レンダラープロセスで発生したイベントの `ports` プロパティにアクセスすれば利用できます。 レンダラーに着くと、それらはネイティブの DOM `MessagePort` オブジェクトになります。
 
-例:
+以下がその例です。
 
 ```js
 // メインプロセス

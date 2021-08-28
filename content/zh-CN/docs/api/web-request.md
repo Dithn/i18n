@@ -36,7 +36,7 @@ session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback
 
 #### `webRequest.onBeforeRequest([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -78,7 +78,7 @@ Some examples of valid `urls`:
 
 #### `webRequest.onBeforeSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -103,7 +103,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -122,7 +122,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onHeadersReceived([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -137,7 +137,6 @@ The `callback` has to be called with a `response` object.
     * `timestamp` Double
     * `statusLine` String
     * `statusCode` Integer
-    * `requestHeaders` Record<string, string>
     * `responseHeaders` Record<string, string[]> (optional)
   * `callback` Function
     * `headersReceivedResponse` Object
@@ -151,7 +150,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onResponseStarted([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -173,7 +172,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onBeforeRedirect([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -197,7 +196,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onCompleted([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object
@@ -220,7 +219,7 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onErrorOccurred([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (可选)
   * `urls` String[] - URL 模式的数组，用来过滤与URL模式不匹配的请求。</code></code>
 * `listener` Function | null
   * `details` Object

@@ -2,7 +2,7 @@
 
 > Manipula los argumentos de la línea de comandos para tu aplicación que Chromium lee
 
-Proceso: [Main](../glossary.md#main-process)
+Proceso: [principal](../glossary.md#main-process)</0>
 
 El siguiente ejemplo muestra como comprobar si la bandera `--disable-gpu` está activada.
 

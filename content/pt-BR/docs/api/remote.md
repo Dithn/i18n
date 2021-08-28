@@ -24,8 +24,8 @@ win.loadURL('https://github.com')
 
 **Note:** The remote module can be disabled for security reasons in the following contexts:
 
-- [`BrowserWindow`](browser-window.md) - by setting the `enableRemoteModule` option to `false`.
-- [`<webview>`](webview-tag.md) - by setting the `enableremotemodule` attribute to `false`.
+* [`BrowserWindow`](browser-window.md) - by setting the `enableRemoteModule` option to `false`.
+* [`<webview>`](webview-tag.md) - by setting the `enableremotemodule` attribute to `false`.
 
 ## Remote Objects
 
@@ -103,7 +103,7 @@ console.log(app)
 
 ## Métodos
 
-The `remote` module has the following methods:
+O módulo `remote` possui os seguintes métodos:
 
 ### `remote.getCurrentWindow()`
 
@@ -123,7 +123,7 @@ Returns `any` - The global variable of `name` (e.g. `global[name]`) in the main 
 
 ## Propriedades
 
-### `remoto.necessário`
+### `remote.require`
 
 A `NodeJS.Require` function equivalent to `require(module)` in the main process. Modules specified by their relative path will resolve relative to the entrypoint of the main process.
 

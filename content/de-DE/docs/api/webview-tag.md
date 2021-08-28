@@ -2,7 +2,7 @@
 
 ## Warnung
 
-Electron's `webview` tag is based on [Chromium's `webview`][chrome-webview], which is undergoing dramatic architectural changes. This impacts the stability of `webviews`, including rendering, navigation, and event routing. We currently recommend to not use the `webview` tag and to consider alternatives, like `iframe`, Electron's `BrowserView`, or an architecture that avoids embedded content altogether.
+Electron's `webview` tag is based on [Chromium's `webview`][chrome-webview], which is undergoing dramatic architectural changes. This impacts the stability of `webviews`, including rendering, navigation, and event routing. We currently recommend to not use the `webview` tag and to consider alternatives, like `iframe`, [Electron's `BrowserView`](browser-view.md), or an architecture that avoids embedded content altogether.
 
 ## Enabling
 
@@ -213,7 +213,7 @@ webview.addEventListener('dom-ready', () => {
   * `httpReferrer` (String | [Referrer](structures/referrer.md)) (optional) - An HTTP Referrer url.
   * `userAgent` String (optional) - A user agent originating the request.
   * `extraHeaders` String (optional) - Extra headers separated by "\n"
-  * `postData` ([UploadRawData[]](structures/upload-raw-data.md) | [UploadFile[]](structures/upload-file.md)) (optional)
+  * `postData` ([UploadRawData](structures/upload-raw-data.md) | [UploadFile](structures/upload-file.md))[] (optional)
   * `baseURLForDataURL` String (optional) - Base url (with trailing path separator) for files to be loaded by the data url. This is needed only if the specified `url` is a data url and needs to load other files.
 
 Returns `Promise<void>` - The promise will resolve when the page has finished loading (see [`did-finish-load`](webview-tag.md#event-did-finish-load)), and rejects if the page fails to load (see [`did-fail-load`](webview-tag.md#event-did-fail-load)).
@@ -222,9 +222,10 @@ Loads the `url` in the webview, the `url` must contain the protocol prefix, e.g.
 
 ### `<webview>.downloadURL(url)`
 
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Initiates a download of the resource at `url` without navigating.
+<p spaces-before="0">Initiates a download of the resource at <code>url` without navigating.</p>
 
 ### `<webview>.getURL()`
 
@@ -328,7 +329,7 @@ Removes the inserted CSS from the current web page. The stylesheet is identified
 
 ### `<webview>.executeJavaScript(code[, userGesture])`
 
-* `code` String
+* `code` Zeichenkette
 * `userGesture` Boolean (optional) - Default `false`.
 
 Returns `Promise<any>` - A promise that resolves with the result of the executed code or is rejected if the result of the code is a rejected promise.
@@ -432,7 +433,7 @@ Executes editing command `replaceMisspelling` in page.
 
 * `text` String
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Füge `text` in das fokusierte Element ein.
 
@@ -441,7 +442,7 @@ Füge `text` in das fokusierte Element ein.
 * `text` String - Content to be searched, must not be empty.
 * `options` Object (optional)
   * `forward` Boolean (optional) - Whether to search forward or backward, defaults to `true`.
-  * `findNext` Boolean (optional) - Whether the operation is first request or a follow up, defaults to `false`.
+  * `findNext` Boolean (optional) - Whether to begin a new text finding session with this request. Should be `true` for initial requests, and `false` for follow-up requests. Defaults to `false`.
   * `matchCase` Boolean (optional) - Whether search should be case-sensitive, defaults to `false`.
 
 Returns `Integer` - The request id used for the request.
@@ -486,13 +487,13 @@ Stops any `findInPage` request for the `webview` with the provided `action`.
   * `footer` String (optional) - String to be printed as page footer.
   * `pageSize` String | Size (optional) - Specify page size of the printed document. Can be `A3`, `A4`, `A5`, `Legal`, `Letter`, `Tabloid` or an Object containing `height`.
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Prints `webview`'s web page. Same as `webContents.print([options])`.
 
 ### `<webview>.printToPDF(options)`
 
-* `options` Object
+* `options` Objekt
   * `headerFooter` Record<string, string> (optional) - the header and footer for the PDF.
     * `title` String - The title for the PDF header.
     * `url` String - the url for the PDF footer.
@@ -523,7 +524,7 @@ Captures a snapshot of the page within `rect`. Omitting `rect` will capture the 
 * `channel` String
 * `...args` any[]
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Send an asynchronous message to renderer process via `channel`, you can also send arbitrary arguments. The renderer process can handle the message by listening to the `channel` event with the [`ipcRenderer`](ipc-renderer.md) module.
 
@@ -533,7 +534,7 @@ See [webContents.send](web-contents.md#contentssendchannel-args) for examples.
 
 * `event`  [MouseInputEvent](structures/mouse-input-event.md) | [MouseWheelInputEvent](structures/mouse-wheel-input-event.md) | [KeyboardInputEvent](structures/keyboard-input-event.md)
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Sends an input `event` to the page.
 
@@ -541,7 +542,7 @@ See [webContents.sendInputEvent](web-contents.md#contentssendinputeventinputeven
 
 ### `<webview>.setZoomFactor(factor)`
 
-* `factor` Number - Zoom faktor.
+* `factor` Number - Zoom Faktor.
 
 Changes the zoom factor to the specified factor. Zoom factor is zoom percent divided by 100, so 300% = 3.0.
 
@@ -566,7 +567,7 @@ Returns `Number` - the current zoom level.
 * `minimumLevel` Number
 * `maximumLevel` Number
 
-Returns `Promise<void>`
+Gibt das `Promise<void>` zurück
 
 Setzt das Maximum und Minimum pinch-to-zoom Level.
 
@@ -584,10 +585,10 @@ The following DOM events are available to the `webview` tag:
 
 ### Event: 'load-commit'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `url` String
-* `isMainFrame` Boolean
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>isMainFrame` Boolean
 
 Fired when a load has committed. This includes navigation within the current document as well as subframe document-level loads, but does not include asynchronous resource loads.
 
@@ -597,7 +598,7 @@ Fired when the navigation is done, i.e. the spinner of the tab will stop spinnin
 
 ### Event: 'did-fail-load'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `errorCode` Integer
 * `errorDescription` String
@@ -608,7 +609,7 @@ This event is like `did-finish-load`, but fired when the load failed or was canc
 
 ### Event: 'did-frame-finish-load'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `isMainFrame` Boolean
 
@@ -622,13 +623,17 @@ Corresponds to the points in time when the spinner of the tab starts spinning.
 
 Corresponds to the points in time when the spinner of the tab stops spinning.
 
+### Event: 'did-attach'
+
+Fired when attached to the embedder web contents.
+
 ### Event: 'dom-ready'
 
 Fired when document in the given frame is loaded.
 
 ### Event: 'page-title-updated'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `title` String
 * `explicitSet` Boolean
@@ -637,7 +642,7 @@ Fired when page title is set during navigation. `explicitSet` is false when titl
 
 ### Event: 'page-favicon-updated'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `favicons` String[] - Array mit URLs.
 
@@ -653,7 +658,7 @@ Fired when page leaves fullscreen triggered by HTML API.
 
 ### Event: 'console-message'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `level` Integer - The log level, from 0 to 3. In order it matches `verbose`, `info`, `warning` and `error`.
 * `message` String - The actual console message
@@ -673,7 +678,7 @@ webview.addEventListener('console-message', (e) => {
 
 ### Event: 'found-in-page'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `result` Object
   * `requestId` Integer
@@ -696,10 +701,10 @@ console.log(requestId)
 
 ### Event: 'new-window'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `url` String
-* `frameName` String
+* ` URL </ 0>  Zeichenfolge</li>
+<li><code>frameName` String
 * `disposition` String - Can be `default`, `foreground-tab`, `background-tab`, `new-window`, `save-to-disk` and `other`.
 * `options` BrowserWindowConstructorOptions - The options which should be used for creating the new [`BrowserWindow`](browser-window.md).
 
@@ -721,11 +726,13 @@ webview.addEventListener('new-window', async (e) => {
 
 ### Event: 'will-navigate'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when a user or the page wants to start navigation. It can happen when the `window.location` object is changed or a user clicks a link in the page.
+<p spaces-before="0">Emitted when a user or the page wants to start navigation. It can happen when
+the <code>window.location` object is changed or a user clicks a link in the page.</p>
 
 This event will not emit when the navigation is started programmatically with APIs like `<webview>.loadURL` and `<webview>.back`.
 
@@ -735,24 +742,29 @@ Calling `event.preventDefault()` does __NOT__ have any effect.
 
 ### Event: 'did-navigate'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when a navigation is done.
+<p spaces-before="0">Emitted when a navigation is done.</p>
 
-This event is not emitted for in-page navigations, such as clicking anchor links or updating the `window.location.hash`. Use `did-navigate-in-page` event for this purpose.
+<p spaces-before="0">This event is not emitted for in-page navigations, such as clicking anchor links
+or updating the <code>window.location.hash`. Use `did-navigate-in-page` event for this purpose.</p>
 
 ### Event: 'did-navigate-in-page'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `isMainFrame` Boolean
-* `url` String
+* ` URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when an in-page navigation happened.
+<p spaces-before="0">Emitted when an in-page navigation happened.</p>
 
-When in-page navigation happens, the page URL changes but does not cause navigation outside of the page. Examples of this occurring are when anchor links are clicked or when the DOM `hashchange` event is triggered.
+<p spaces-before="0">When in-page navigation happens, the page URL changes but does not cause
+navigation outside of the page. Examples of this occurring are when anchor links
+are clicked or when the DOM <code>hashchange` event is triggered.</p>
 
 ### Event: 'close'
 
@@ -769,7 +781,7 @@ webview.addEventListener('close', () => {
 
 ### Event: 'ipc-message'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `channel` String
 * `args` any[]
@@ -802,9 +814,9 @@ Fired when the renderer process is crashed.
 
 ### Event: 'plugin-crashed'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `name` String
+* `name` Zeichenfolge
 * `version` String
 
 Fired when a plugin process is crashed.
@@ -823,7 +835,7 @@ Emitted when media is paused or done playing.
 
 ### Event: 'did-change-theme-color'
 
-Rückgabewert:
+Kehrt zurück:
 
 * `themeColor` String
 
@@ -835,23 +847,24 @@ Emitted when a page's theme color changes. This is usually due to encountering a
 
 ### Event: 'update-target-url'
 
-Rückgabewert:
+Kehrt zurück:
 
-* `url` String
+*  URL </ 0>  Zeichenfolge</li>
+</ul>
 
-Emitted when mouse moves over a link or the keyboard moves the focus to a link.
+<p spaces-before="0">Emitted when mouse moves over a link or the keyboard moves the focus to a link.</p>
 
-### Event: 'devtools-opened'
+<h3 spaces-before="0">Event: 'devtools-opened'</h3>
 
-Emittiert wenn die DevTools geöffnet wurden.
+<p spaces-before="0">Emittiert wenn die DevTools geöffnet wurden.</p>
 
-### Event: 'devtools-closed'
+<h3 spaces-before="0">Event: 'devtools-closed'</h3>
 
-Emittiert wenn die DevTools geschlossen wurden.
+<p spaces-before="0">Emittiert wenn die DevTools geschlossen wurden.</p>
 
-### Event: 'devtools-focused'
+<h3 spaces-before="0">Event: 'devtools-focused'</h3>
 
-Emitted when DevTools is focused / opened.
+<p spaces-before="0">Emitted when DevTools is focused / opened.</p>
 
 [runtime-enabled-features]: https://cs.chromium.org/chromium/src/third_party/blink/renderer/platform/runtime_enabled_features.json5?l=70
 [chrome-webview]: https://developer.chrome.com/docs/extensions/reference/webviewTag/

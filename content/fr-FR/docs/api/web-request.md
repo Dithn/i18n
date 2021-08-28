@@ -36,10 +36,10 @@ Les méthodes suivantes sont disponibles pour les instances de `WebRequest` :
 
 #### `webRequest.onBeforeRequest([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -51,7 +51,7 @@ Les méthodes suivantes sont disponibles pour les instances de `WebRequest` :
     * `timestamp` Double
     * `uploadData` [UploadData[]](structures/upload-data.md)
   * `callback` Function
-    * `response` Object
+    * Objet `response`
       * `cancel` Boolean)
       * `redirectURL` String (facultatif) - Empêche la requête originale d'être envoyée ou complétée et à la place celle ci est redirigée vers l'URL donnée.
 
@@ -78,10 +78,10 @@ Some examples of valid `urls`:
 
 #### `webRequest.onBeforeSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -91,9 +91,9 @@ Some examples of valid `urls`:
     * `resourceType` String
     * `referrer` String
     * `timestamp` Double
-    * `requestHeaders` Record<string, string>
+    * Enregistrement `requestHeaders`<string, string>
   * `callback` Function
-    * `beforeSendResponse` Object
+    * Objet `beforeSendResponse`
       * `cancel` Boolean)
       * `requestHeaders` Record<string, string | string[]> (optional) - When provided, request will be made with these headers.
 
@@ -103,10 +103,10 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onSendHeaders([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -116,16 +116,16 @@ The `callback` has to be called with a `response` object.
     * `resourceType` String
     * `referrer` String
     * `timestamp` Double
-    * `requestHeaders` Record<string, string>
+    * Enregistrement `requestHeaders`<string, string>
 
 The `listener` will be called with `listener(details)` just before a request is going to be sent to the server, modifications of previous `onBeforeSendHeaders` response are visible by the time this listener is fired.
 
 #### `webRequest.onHeadersReceived([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -137,10 +137,9 @@ The `listener` will be called with `listener(details)` just before a request is 
     * `timestamp` Double
     * `statusLine` String
     * `statusCode` Integer
-    * `requestHeaders` Record<string, string>
     * `responseHeaders` Record<string, string[]> (optional)
   * `callback` Function
-    * `headersReceivedResponse` Object
+    * Objet `headersReceivedResponse`
       * `cancel` Boolean)
       * `responseHeaders` Record<string, string | string[]> (optional) - When provided, the server is assumed to have responded with these headers.
       * `statusLine` String (optional) - Should be provided when overriding `responseHeaders` to change header status otherwise original response header's status will be used.
@@ -151,10 +150,10 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onResponseStarted([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -173,10 +172,10 @@ The `listener` will be called with `listener(details)` when first byte of the re
 
 #### `webRequest.onBeforeRedirect([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -197,10 +196,10 @@ The `listener` will be called with `listener(details)` when a server initiated r
 
 #### `webRequest.onCompleted([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String
@@ -220,10 +219,10 @@ The `listener` will be called with `listener(details)` when a request is complet
 
 #### `webRequest.onErrorOccurred([filter, ]listener)`
 
-* `filter` Object (optional)
+* `filter` Object (facultatif)
   * `urls` String[] - Tableau de modèles d'URL qui sera utilisé pour filtrer les requêtes qui ne correspondent pas aux modèles.
 * `listener` Function | null
-  * `details` Object
+  * Objet `details`
     * `id` Integer
     * `url` String
     * `method` String

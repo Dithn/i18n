@@ -6,7 +6,7 @@
 
 `ServiceWorkers` クラスのインスタンスは、`Session` の `serviceWorkers` プロパティを使用してアクセスします。
 
-例:
+以下がその例です。
 
 ```javascript
 const { session } = require('electron')
@@ -31,7 +31,7 @@ session.defaultSession.serviceWorkers.on('console-message', (event, messageDetai
 
 #### Event: 'console-message'
 
-戻り値:
+戻り値：
 
 * `event` Event
 * `messageDetails` Object - コンソールメッセージに関する情報
@@ -43,6 +43,16 @@ session.defaultSession.serviceWorkers.on('console-message', (event, messageDetai
   * `lineNumber` Number - このコンソールメッセージのトリガーとなったソースの行番号
 
 サービスワーカーがコンソールに何かをロギングしたときに発生します。
+
+#### イベント: 'registration-completed'
+
+戻り値：
+
+* `event` Event
+* `details` Object - 登録されているサービスワーカーに関する情報
+  * `scope` String - サービスワーカーが登録している基底 URL
+
+サービスワーカーが登録されてたときに発生します。 [`navigator.serviceWorker.register('/sw.js')`](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register) の呼び出しが成功した後や、Chrome 拡張機能が読み込まれた後に発生することがあります。
 
 ### インスタンスメソッド
 

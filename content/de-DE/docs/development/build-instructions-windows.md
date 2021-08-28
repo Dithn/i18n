@@ -1,8 +1,8 @@
 # Build Anweisungen (Windows)
 
-Follow the guidelines below for building Electron on Windows.
+Follow the guidelines below for building **Electron itself** on Windows, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.
 
-## Vorrausetzungen
+## Prerequisites
 
 * Windows 10 / Server 2012 R2 or higher
 * Visual Studio 2017 15.7.2 or higher - [download VS 2019 Community Edition for free](https://www.visualstudio.com/vs/)
@@ -29,7 +29,7 @@ Windows Security doesn't like one of the files in the Chromium source code (see 
 
 ## Building
 
-Siehe [Build Instruktionen: GN](build-instructions-gn.md)
+See [Build Instructions: GN](build-instructions-gn.md)
 
 ## 32-Bit-Build
 
@@ -94,3 +94,5 @@ Make sure you have installed `pywin32` with `pip install pywin32`.
 ### Build Scripts Hang Until Keypress
 
 This bug is a "feature" of Windows' command prompt. It happens when clicking inside the prompt window with `QuickEdit` enabled and is intended to allow selecting and copying output text easily. Since each accidental click will pause the build process, you might want to disable this feature in the command prompt properties.
+
+[application-distribution]: ../tutorial/application-distribution.md

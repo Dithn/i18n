@@ -1,4 +1,4 @@
-# 拉取请求
+# 合并请求
 
 * [设置您的本地环境](#setting-up-your-local-environment)
   * [步骤1: 复制](#step-1-fork)

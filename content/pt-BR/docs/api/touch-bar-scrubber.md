@@ -12,15 +12,15 @@ Processo: [Main](../glossary.md#main-process)
     * `selectedIndex` Integer - The index of the item the user selected.
   * `highlight` Function (optional) - Called when the user taps any item.
     * `highlightedIndex` Integer - The index of the item the user touched.
-  * `selectedStyle` String (optional) - Selected item style. Can be `background`, `outline` or `none`. Defaults to `none`.
-  * `overlayStyle` String (optional) - Selected overlay item style. Can be `background`, `outline` or `none`. Defaults to `none`.
+  * `selectedStyle` String (optional) - Selected item style. Can be `background`, `outline` or `none`. O padrão é `none`.
+  * `overlayStyle` String (optional) - Selected overlay item style. Can be `background`, `outline` or `none`. O padrão é `none`.
   * `showArrowButtons` Boolean (optional) - Defaults to `false`.
-  * `mode` String (optional) - Can be `fixed` or `free`. The default is `free`.
+  * `mode` String (optional) - Can be `fixed` or `free`. O padrão é `free`.
   * `continuous` Boolean (optional) - Defaults to `true`.
 
-### Propriedades de Instância
+### Propriedades da Instância
 
-The following properties are available on instances of `TouchBarScrubber`:
+As seguintes propriedades estão disponíveis em instâncias de `TouchBarScrubber`:
 
 #### `touchBarScrubber.items`
 

@@ -6,7 +6,7 @@ Processo: [Main](../glossary.md#main-process)
 
 **See also: [A detailed guide about how to implement updates in your application](../tutorial/updates.md).**
 
-`autoUpdater` is an [EventEmitter][event-emitter].
+`autoUpdater` é um [EventEmitter][event-emitter].
 
 ## Avisos de plataforma
 
@@ -38,7 +38,7 @@ O objeto `autoUpdater` emite os seguintes eventos:
 
 Retorna:
 
-* `error` Error
+* Erro `error`
 
 Emitido quando há um erro durante a atualização.
 

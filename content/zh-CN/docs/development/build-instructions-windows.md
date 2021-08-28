@@ -1,8 +1,8 @@
 # 构建步骤（Windows）
 
-遵循下面的步骤, 在 Windows 平台上构建 Electron。
+按照下面的指南在Windows下构建 **Electron 本身**，以此创建自定义 Electron 二进制文件。 为了将您的应用代码与预构建的 Electron 二进制文件打包并发布，请参阅 [应用程序发布][application-distribution] 指南。
 
-## 前提条件
+## Prerequisites
 
 * Windows 10 / Server 2012 R2 或更高版本
 * Visual Studio 2017 15.7.2 或更高版本 - [免费下载 VS 2019 社区版](https://www.visualstudio.com/vs/)
@@ -23,13 +23,13 @@
 
 **注意:** 即使 Visual Studio 不用于构建，但是仍然**需要**，因为我们需要它提供的构建工具链。
 
-## Exclude source tree from Windows Security
+## 从Windows Security排除source tree
 
-Windows Security doesn't like one of the files in the Chromium source code (see https://crbug.com/441184), so it will constantly delete it, causing `gclient sync` issues. You can exclude the source tree from being monitored by Windows Security by [following these instructions](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26).
+Windows Security 不支持Chromium 源码中部分代码，详情(see https://crbug.com/441184). 此行为将会导致windows系统会删除Chromium里的危险文件从而导致 `gclient sync` Bug. 通过[following these instructions](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26)你可以在Windows Security中排除这一行为。
 
 ## 构建
 
-参照[Build Instructions: GN](build-instructions-gn.md)
+See [Build Instructions: GN](build-instructions-gn.md)
 
 ## 32 位构建
 
@@ -94,3 +94,5 @@ This can happen during build, when Debugging Tools for Windows has been installe
 ### 构建脚本挂起, 直到某个按键按下才有响应
 
 这个bug 是 Windows 命令提示符的一个"功能" It happens when clicking inside the prompt window with `QuickEdit` enabled and is intended to allow selecting and copying output text easily. 由于每次意外点击都会暂停构建过程，您可能需要在命令的属性中禁用此 功能。
+
+[application-distribution]: ../tutorial/application-distribution.md

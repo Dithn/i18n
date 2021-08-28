@@ -1,6 +1,6 @@
-# アプリケーションを更新する
+# アプリケーションの更新
 
-Electronアプリケーションを更新する方法がいくつかあります。 最も簡単で、公式にサポートされているものは、ビルトインの[Squirrel](https://github.com/Squirrel) フレームワークとElectronの [autoUpdater](../api/auto-updater.md) モジュールの利用します。
+Electron アプリケーションを更新する方法はいくつかあります。 最も簡単で、公式にサポートされているものは、組み込みの [Squirrel](https://github.com/Squirrel) フレームワークと Electron の [autoUpdater](../api/auto-updater.md) モジュールの利用です。
 
 ## `update.electronjs.org`の使用
 
@@ -89,7 +89,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 })
 ```
 
-エラーが [処理されている](../api/auto-updater.md#event-error) ことも確認してください。 これは `stderr` にログを出力するための例です。
+エラーが [ハンドリングされている](../api/auto-updater.md#event-error) ことも確認してください。 これは `stderr` にログを出力するための例です。
 
 ```javascript
 autoUpdater.on('error', message => {
@@ -98,9 +98,9 @@ autoUpdater.on('error', message => {
 })
 ```
 
-## 手動で更新を処理する
+## 更新を手動でハンドリング
 
-自動更新によって行われた要求は、あなたの直接制御下にありませんので。 処理が困難な状況(更新サーバーが認証の背後にある場合など)を見つけることができます。 `url` フィールドはファイルをサポートします。つまり、何らかの労力をかけると、プロセスのサーバー通信の側面を避けることができます。 [これがどのように機能するかの例を示します](https://github.com/electron/electron/issues/5020#issuecomment-477636990)。
+自動更新によるリクエストは直接管理されていないため、対応が難しい状況が発生することがあります (更新サーバーが認証下にある場合など)。 `url` フィールドはファイルをサポートしていますので、工夫次第でサーバーとの通信を回避できます。 [こちらにその動作例があります](https://github.com/electron/electron/issues/5020#issuecomment-477636990)。
 
 [now]: https://zeit.co/now
 [hazel]: https://github.com/zeit/hazel

@@ -165,7 +165,7 @@ Retorna:
 
 Emitido quando o [Handoff][handoff] está prestes a ser continuado em outro dispositivo. If you need to update the state to be transferred, you should call `event.preventDefault()` immediately, construct a new `userInfo` dictionary and call `app.updateCurrentActivity()` in a timely manner. Caso contrário, a operação irá falhar e `continue-activity-error` será chamado.
 
-### Evento: 'new-window-for-tab' no _macOS_
+### Evento: 'new-window-for-tab' _macOS_
 
 Retorna:
 
@@ -267,17 +267,17 @@ Retorna:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
-* `authenticationResponseDetails` Object
+* Objeto `authenticationResponseDetails`
   * `url` URL
-* `authInfo` Object
+* Objeto `authInfo`
   * `isProxy` Boolean
   * `scheme` String
   * `host` String
   * `port` Integer
   * `realm` String
 * `callback` Function
-  * `username` String (optional)
-  * `password` String (optional)
+  * `username` String (opcional)
+  * `password` String (opcional)
 
 Emitido quando `webContents` quer fazer uma autenticação básica.
 
@@ -327,7 +327,7 @@ Retorna:
 
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
-* `details` Object
+* Objeto `details`
   * `reason` String - The reason the render process is gone.  Valores possíveis:
     * `clean-exit` - Process exited with an exit code of zero
     * `abnormal-exit` - Process exited with a non-zero exit code
@@ -345,7 +345,7 @@ Emitted when the renderer process unexpectedly disappears.  This is normally bec
 Retorna:
 
 * `event` Event
-* `details` Object
+* Objeto `details`
   * `type` String - Process type. One of the following values:
     * `Utilidade`
     * `Zygote`
@@ -418,7 +418,7 @@ Retorna:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 
-Emitted when `desktopCapturer.getSources()` is called in the renderer process of `webContents`. Calling `event.preventDefault()` will make it return empty sources.
+Este evento será emitido quando `desktopCapturer.getSources()` é chamado no processo de renderização do `webContents`. Calling `event.preventDefault()` will make it return empty sources.
 
 ### Event: 'remote-require' _Deprecated_
 
@@ -457,7 +457,7 @@ Retorna:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 
-É emitido quando `remote.getCurrentWindow()` é chamado pelo processo de renderização de `webContents`. Calling `event.preventDefault()` will prevent the object from being returned. Valores personalizados podem ser retornados pela configuração `event.returnValue`.
+Este evento será emitido quando `remote.getCurrentWindow()` é chamado no processo de renderização do `webContents`. Calling `event.preventDefault()` will prevent the object from being returned. Valores personalizados podem ser retornados pela configuração `event.returnValue`.
 
 ### Event: 'remote-get-current-web-contents' _Deprecated_
 
@@ -466,7 +466,7 @@ Retorna:
 * `event` Event
 * `webContents` [WebContents](web-contents.md)
 
-É emitido quando `remote.getCurrentWebContents()` é chamado pelo processo de renderização de `webContents`. Calling `event.preventDefault()` will prevent the object from being returned. Valores personalizados podem ser retornados pela configuração `event.returnValue`.
+Este evento será emitido quando `remote.getCurrentWebContents()` é chamado no processo de renderização do `webContents`. Calling `event.preventDefault()` will prevent the object from being returned. Valores personalizados podem ser retornados pela configuração `event.returnValue`.
 
 ## Métodos
 
@@ -490,7 +490,7 @@ All windows will be closed immediately without asking the user, and the `before-
 
 ### `app.relaunch([options])`
 
-* `options` Object (optional)
+* Objeto `options` (opcional)
   * `args` String[] (opcional)
   * `execPath` String (opcional)
 
@@ -517,11 +517,11 @@ Retorna `Boolean` - `true` se o Electron tiver inicializado, `false` caso contr�
 
 ### `app.whenReady()`
 
-Returns `Promise<void>` - fulfilled when Electron is initialized. Pode ser usado como uma alternativa conveniente para a verificação `app.isReady()` e subscrever o evento `ready` se a aplicação ainda não estiver pronta.
+Retorna `Promise<void>` - cumprido quando o Electron é inicializado. Pode ser usado como uma alternativa conveniente para a verificação `app.isReady()` e subscrever o evento `ready` se a aplicação ainda não estiver pronta.
 
 ### `app.focus([options])`
 
-* `options` Object (optional)
+* Objeto `options` (opcional)
   * `steal` Boolean _macOS_ - Make the receiver the active app even if another app is currently active.
 
 On Linux, focuses on the first visible window. On macOS, makes the application the active app. On Windows, focuses on the application's first window.
@@ -578,7 +578,7 @@ If `app.getPath('logs')` is called without called `app.setAppLogsPath()` being c
 ### `app.getFileIcon(path[, options])`
 
 * `path` String
-* `options` Object (optional)
+* Objeto `options` (opcional)
   * `size` String
     * `small` - 16x16
     * `normal` - 32x32
@@ -626,7 +626,7 @@ Sobrescreve o atual nome da aplicação.
 
 ### `app.getLocale()`
 
-Returns `String` - The current application locale. Possible return values are documented [here](locales.md).
+Returns `String` - The current application locale, fetched using Chromium's `l10n_util` library. Possible return values are documented [here](https://source.chromium.org/chromium/chromium/src/+/master:ui/base/l10n/l10n_util.cc).
 
 Para definir a localidade, você vai querer usar um switch de linha de comando na inicialização do aplicativo, que pode ser encontrado [aqui](https://github.com/electron/electron/blob/master/docs/api/command-line-switches.md).
 
@@ -655,7 +655,7 @@ Limpa a lista de documentos recentes.
 ### `app.setAsDefaultProtocolClient(protocol[, path, args])`
 
 * `protocol` String - O nome do protocolo sem `://`. For example, if you want your app to handle `electron://` links, call this method with `electron` as the parameter.
-* `path` String (optional) _Windows_ - The path to the Electron executable. Defaults to `process.execPath`
+* `path` String (optional) _Windows_ - The path to the Electron executable. O padrão é `process.execPath`
 * `args` String[] (optional) _Windows_ - Arguments passed to the executable. Defaults to an empty array
 
 Retorna `Boolean` - Se a chamada foi realizada com sucesso.
@@ -743,9 +743,11 @@ Define ou remove uma Jump List personalizada para a aplicação e retorna uma da
 
 Se `categories` for `null`, a Jump List personalizada anteriormente definida (se houver) será substituída por uma Jump List padrão para o app (gerenciada pelo Windows).
 
-**Nota:** Se um objeto `JumpListCategory` não tiver for nem a propriedade `type` nem a `name` definidas, então seu `type` é assumido como `tasks`. Se a propriedade do `name` está definida mas a propriedade do `type` é omissa, então o `type` é assumido como `custom`.
+**Nota:** Se um objeto `JumpListCategory` não tiver for nem a propriedade `type` nem a `name` definidas, então seu `type` é assumido como `tasks`. Se a propriedade `name` está definida mas a propriedade `type` é omissa, então o `type` é assumido como `custom`.
 
 **Note:** Os usuários podem remover itens de categorias personalizadas, e o Windows não permitirá que um item removido seja adicionado novamente a uma categoria personalizada até **após** a próxima chamada bem-sucedida a `app.setJumpList(categories)`. Qualquer tentativa de adicionar novamente um item removido de uma categoria personalizada antes disso resultará na omissão da categoria inteira da Jump List. A lista dos itens removidos pode ser obtida usando `app.getJumpListSettings()`.
+
+**Note:** The maximum length of a Jump List item's `description` property is 260 characters. Beyond this limit, the item will not be added to the Jump List, nor will it be displayed.
 
 Aqui vai um exemplo muito simples de como criar uma Jump List personalizada:
 
@@ -859,7 +861,7 @@ Releases all locks that were created by `requestSingleInstanceLock`. This will a
 * `userInfo` any - App-specific state to store for use by another device.
 * `webpageURL` String (optional) - The webpage to load in a browser if no suitable app is installed on the resuming device. The scheme must be `http` or `https`.
 
-Cria um `NSUserActivity` e o define como a atividade atual. The activity is eligible for [Handoff][handoff] to another device afterward.
+Cria um `NSUserActivity` e o define como a atividade atual. A atividade, então, é qualificada para ser repassada (via [Handoff][handoff]) a outro dispositivo de agora em diante.
 
 ### `app.getCurrentActivityType()` _macOS_
 
@@ -886,7 +888,7 @@ Atualiza a atividade atual se seu tipo corresponder a `type`, mesclando as entra
 
 Muda o [Application User Model ID][app-user-model-id] para `id`.
 
-### `app.setActivationPolicy(policy)` _macOS_
+### `app.setActivationPolicy(policy)` no _macOS_
 
 * `policy` String - Can be 'regular', 'accessory', or 'prohibited'.
 
@@ -932,9 +934,9 @@ Retorna [`GPUFeatureStatus`](structures/gpu-feature-status.md) - Os status de re
 
 ### `app.getGPUInfo(infoType)`
 
-* `infoType` String - Can be `basic` or `complete`.
+* `infoType` String - Pode ser `basic` ou `complete`.
 
-Returns `Promise<unknown>`
+Retorna `Promise<unknown>`
 
 For `infoType` equal to `complete`: Promise is fulfilled with `Object` containing all the GPU Information as in [chromium's GPUInfo object](https://chromium.googlesource.com/chromium/src/+/4178e190e9da409b055e5dff469911ec6f6b716f/gpu/config/gpu_info.cc). This includes the version and driver information that's shown on `chrome://gpu` page.
 
@@ -991,7 +993,7 @@ Retorna `Boolean` - Indica se o ambiente de trabalho atual é o Unity ou não.
 
 ### `app.getLoginItemSettings([options])` _macOS_ _Windows_
 
-* `options` Object (optional)
+* Objeto `options` (opcional)
   * `path` String (optional) _Windows_ - The executable path to compare against. Defaults to `process.execPath`.
   * `args` String[] (optional) _Windows_ - The command-line arguments to compare against. Defaults to an empty array.
 
@@ -1069,7 +1071,7 @@ Show the app's about panel options. These options can be overridden with `app.se
   * `website` String (optional) _Linux_ - The app's website.
   * `iconPath` String (optional) _Linux_ _Windows_ - Path to the app's icon in a JPEG or PNG file format. On Linux, will be shown as 64x64 pixels while retaining aspect ratio.
 
-Define as opções do painel sobre. This will override the values defined in the app's `.plist` file on macOS. Consulte a [documentação da Apple][about-panel-options] para mais detalhes. On Linux, values must be set in order to be shown; there are no defaults.
+Define as opções do painel sobre. This will override the values defined in the app's `.plist` file on macOS. See the [Apple docs][about-panel-options] for more details. On Linux, values must be set in order to be shown; there are no defaults.
 
 If you do not set `credits` but still wish to surface them in your app, AppKit will look for a file named "Credits.html", "Credits.rtf", and "Credits.rtfd", in that order, in the bundle returned by the NSBundle class method main. The first file found is used, and if none is found, the info area is left blank. See Apple [documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptioncredits?language=objc) for more information.
 
@@ -1104,13 +1106,13 @@ Enables full sandbox mode on the app. This means that all renderers will be laun
 
 Este método somente pode ser chamado antes do aplicativo estiver pronto.
 
-### `app.isInApplicationsFolder()` no _macOS_
+### `app.isInApplicationsFolder()` _macOS_
 
 Returns `Boolean` - Whether the application is currently running from the systems Application folder. Use in combination with `app.moveToApplicationsFolder()`
 
 ### `app.moveToApplicationsFolder([options])` _macOS_
 
-* `options` Object (optional)
+* Objeto `options` (opcional)
   * `conflictHandler` Function\<Boolean> (optional) - A handler for potential conflict in move failure.
     * `conflictType` String - The type of move conflict encountered by the handler; can be `exists` or `existsAndRunning`, where `exists` means that an app of the same name is present in the Applications directory and `existsAndRunning` means both that it exists and that it's presently running.
 
@@ -1141,7 +1143,7 @@ app.moveToApplicationsFolder({
 
 Would mean that if an app already exists in the user directory, if the user chooses to 'Continue Move' then the function would continue with its default behavior and the existing app will be trashed and the active app moved into its place.
 
-### `app.isSecureKeyboardEntryEnabled()` no _macOS_
+### `app.isSecureKeyboardEntryEnabled()` _macOS_
 
 Returns `Boolean` - whether `Secure Keyboard Entry` is enabled.
 
